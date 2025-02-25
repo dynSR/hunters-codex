@@ -1,0 +1,15 @@
+.link {
+  text-transform: uppercase;
+  font-weight: lighter;
+  font-size: var(--font-size-link);
+  user-select: none;
+  letter-spacing: var(--size-xs);
+}
+
+.link:hover {
+  cursor: pointer;
+  color: var(--primary-opaque);
+  text-decoration: underline;
+  text-underline-offset: var(--size-small);
+  text-decoration-thickness: var(--size-small);
+}
