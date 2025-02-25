@@ -1,1 +1,100 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: "Atkinson";
+  src: url("/assets/fonts/Atkinson_Hyperlegible_Next/AtkinsonHyperlegibleNext-VariableFont_wght.ttf")
+    format("opentype");
+}
+
+:root {
+  font-family: var(--font-main);
+
+  /* Color palette */
+  /* ------ Whites */
+  --white-opaque: rgba(248, 248, 248, 1);
+
+  /* ------ Blacks */
+  --black-opaque: rgba(25, 25, 25, 1);
+  --black-high: rgba(25, 25, 25, 0.8);
+  --black-medium: rgba(25, 25, 25, 0.5);
+  --black-low: rgba(25, 25, 25, 0.35);
+  --black-faint: rgba(25, 25, 25, 0.15);
+
+  /* ------ Primary */
+  --primary-opaque: rgba(255, 127, 17, 1);
+
+  /* ------ Success */
+  --success-opaque: rgba(92, 171, 125, 1);
+
+  /* ------ Danger */
+  --danger-opaque: rgba(237, 37, 78, 1);
+
+  /* ------ Disabled */
+  --disabled-opaque: rgba(93, 115, 126, 1);
+  --disabled-medium: rgba(93, 115, 126, 0.5);
+
+  /* Size palette */
+  /* ------ ^2 */
+
+  --size-none: 0px; /* 0px */
+  --size-xs: 1px; /* 1px */
+  --size-tiny: 0.125rem; /* 2px */
+  --size-small: 0.25rem; /* 4px */
+  --size-medium: 0.5rem; /* 8px */
+  --size-large: 1rem; /* 16px */
+  --size-xl: 2rem; /* 32px */
+  --size-xxl: 4rem; /* 64px */
+  --size-huge: 8rem; /* 128px */
+  --size-gigantic: 16rem; /* 256px */
+  --size-colossal: 32rem; /* 512px */
+
+  --size-fixed-none: 0px;
+  --size-fixed-xs: 1px;
+  --size-fixed-tiny: 2px;
+  --size-fixed-small: 4px;
+  --size-fixed-medium: 8px;
+  --size-fixed-large: 16px;
+  --size-fixed-xl: 32px;
+  --size-fixed-xxl: 64px;
+  --size-fixed-huge: 128px;
+  --size-fixed-gigantic: 256px;
+  --size-fixed-colossal: 512px;
+
+  /* ------ Grid */
+  --size-1gs: 7.5rem;
+  --size-2gs: 17rem;
+  --size-3gs: 26.5rem;
+  --size-4gs: 36rem;
+  --size-5gs: 41.5rem;
+  --size-6gs: 45.5rem;
+  --size-7gs: 55rem;
+
+  /* ------ Specific */
+  --size-search-bar: 3rem; /* 48px */
+  --size-list-item: 5rem; /* 80px */
+  --size-content-height: calc(100dvh - var(--size-fixed-gigantic));
+
+  /* Font families */
+  --font-main: "Atkinson", "Inter", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol";
+
+  /* Font sizes */
+  --font-size-title: var(--size-xl);
+  --font-size-subtitle: 1.5rem;
+  --font-size-main: 1.25rem;
+  --font-size-link: var(--size-large);
+  --font-size-small: var(0.875rem);
+
+  /* Border related */
+  --border-radius: var(--size-small);
+  --border-width: var(--size-xs);
+}
+
+body {
+  color: var(--black-opaque);
+  margin: var(--size-fixed-xl);
+}
+
+main {
+  font-size: var(--font-size-main);
+  margin-top: var(--size-fixed-xl);
+}
