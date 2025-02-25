@@ -1,12 +1,18 @@
 {
   "name": "project",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "start:dev" : "ng serve --configuration=development",
+    "start:prod": "ng serve --configuration=production",
+    "build:dev": "ng build --configuration=development",
+    "build:prod": "ng build --configuration=production"
   },
   "private": true,
   "dependencies": {
