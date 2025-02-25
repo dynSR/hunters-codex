@@ -1,0 +1,29 @@
+.breadcrumb {
+  margin-bottom: var(--size-fixed-xl);
+}
+
+.breadcrumb__list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: var(--size-large);
+  width: 100%;
+  height: var(--size-fixed-xxl);
+  background-color: var(--black-faint);
+}
+
+.breadcrumb__separator::marker,
+.breadcrumb__item::marker,
+.breadcrumb__item--current::marker {
+  content: "";
+}
+
+.breadcrumb__separator {
+  font-weight: lighter;
+}
+
+.breadcrumb__item--current {
+  text-transform: uppercase;
+  font-weight: bolder;
+  font-size: var(--font-size-link);
+}

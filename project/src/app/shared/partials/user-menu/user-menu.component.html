@@ -1,0 +1,20 @@
+@if (isUserConnected) {
+<div class="user-menu" role="navigation" aria-label="User menu">
+  <img src="profile.jpg" alt="{{ userName }}" class="user-avatar" />
+  <div class="user-menu__info">
+    <span class="user-menu__name">{{ userName }}</span>
+    <button #logoutBtn aria-label="Log out" class="link btn-secondary">
+      {{ "LOG OUT" }}
+    </button>
+  </div>
+</div>
+} @else {
+<div class="auth-menu" role="navigation" aria-label="Auth menu">
+  <a routerLink="/login" class="link" aria-label="Log in">
+    {{ "LOG IN" }}
+  </a>
+  <a routerLink="/signup" class="btn btn-primary" aria-label="Sign up">
+    {{ "SIGN UP" }}
+  </a>
+</div>
+}

@@ -1,0 +1,19 @@
+<nav aria-label="Breadcrumb" class="breadcrumb">
+  <ol class="breadcrumb__list">
+    <li class="breadcrumb__item">
+      <a routerLink="/" class="breadcrumb__link link">
+        {{ "Home" }}
+      </a>
+    </li>
+    <li class="breadcrumb__separator" aria-hidden="true">|</li>
+    <li class="breadcrumb__item">
+      <a routerLink="/section" class="breadcrumb__link link">
+        {{ "Section" }}
+      </a>
+    </li>
+    <li class="breadcrumb__separator" aria-hidden="true">|</li>
+    <li class="breadcrumb__item--current">
+      <p>{{ "Current page" }}</p>
+    </li>
+  </ol>
+</nav>
