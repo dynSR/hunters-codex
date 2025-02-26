@@ -8,7 +8,14 @@ import { BreadcrumbComponent } from './shared/partials/breadcrumb/breadcrumb.com
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, HeaderComponent, BreadcrumbComponent],
-  templateUrl: './app.component.html',
+  template: `
+    <app-header />
+
+    <main>
+      <app-breadcrumb />
+      <router-outlet />
+    </main>
+  `,
 })
 export class AppComponent {
   title: string = 'project';
