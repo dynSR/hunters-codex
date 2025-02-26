@@ -1,19 +1,27 @@
 <nav aria-label="Breadcrumb" class="breadcrumb">
   <ol class="breadcrumb__list">
+    @for (item of breadcrumbItems; track $index) {
+    <!-- All navigation item -->
+    @if($index < breadcrumbItems.length - 1) {
     <li class="breadcrumb__item">
-      <a routerLink="/" class="breadcrumb__link link">
-        {{ "Home" }}
+      <a [routerLink]="item.url" class="breadcrumb__link link">
+        {{ item.name }}
       </a>
     </li>
-    <li class="breadcrumb__separator" aria-hidden="true">|</li>
+    } @else {
+    <!-- Current page -->
     <li class="breadcrumb__item">
-      <a routerLink="/section" class="breadcrumb__link link">
-        {{ "Section" }}
-      </a>
+      <p class="breadcrumb__item--current">
+        {{ item.name }}
+      </p>
     </li>
-    <li class="breadcrumb__separator" aria-hidden="true">|</li>
-    <li class="breadcrumb__item--current">
-      <p>{{ "Current page" }}</p>
+    }
+
+    <!-- All separators -->
+    @if($index < breadcrumbItems.length - 1) {
+    <li class="breadcrumb__separator" aria-hidden="true">
+      {{ "|" }}
     </li>
+    } }
   </ol>
 </nav>
