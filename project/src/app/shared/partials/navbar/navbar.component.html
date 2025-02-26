@@ -1,20 +1,20 @@
 <nav role="navigation" aria-label="Main nav">
   <ul class="nav__list">
     <li class="nav__item">
-      <a routerLink="/" class="nav__link link">
-        {{ "Equipments" }}
+      <a [routerLink]="equipmentRoute.path" class="nav__link link">
+        {{ equipmentRoute.title | uppercase }}
       </a>
     </li>
     <li class="nav__separator" aria-hidden="true">{{ "•" }}</li>
     <li class="nav__item">
-      <a routerLink="/section" class="nav__link link">
-        {{ "World" }}
+      <a [routerLink]="worldRoute.path" class="nav__link link">
+        {{ worldRoute.title | uppercase }}
       </a>
     </li>
     <li class="nav__separator" aria-hidden="true">{{ "•" }}</li>
     <li class="nav__item">
-      <a routerLink="/page" class="nav__link link">
-        {{ "Crafting list" }}
+      <a [routerLink]="craftingListRoute.path" class="nav__link link">
+        {{ craftingListRoute.title | uppercase }}
       </a>
     </li>
   </ul>

@@ -1,11 +1,18 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { routeDefinition, routes } from '../../../app.routes';
+import { CommonModule } from '@angular/common';
+import { RouteInfo } from '../../interfaces/route-info';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink],
+  imports: [CommonModule, RouterLink],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
-export class NavbarComponent {}
+export class NavbarComponent {
+  readonly equipmentRoute: RouteInfo = routeDefinition['equipment'];
+  readonly worldRoute: RouteInfo = routeDefinition['world'];
+  readonly craftingListRoute: RouteInfo = routeDefinition['craftingList'];
+}
