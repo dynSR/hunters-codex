@@ -1,6 +1,8 @@
-.link {
+.link,
+.link--current {
+  font-family: var(--font-link);
   text-transform: uppercase;
-  font-weight: lighter;
+  font-weight: var(--weight-light);
   font-size: var(--font-size-link);
   user-select: none;
   letter-spacing: var(--size-xs);
@@ -12,4 +14,8 @@
   text-decoration: underline;
   text-underline-offset: var(--size-small);
   text-decoration-thickness: var(--size-small);
+}
+
+.link--current {
+  font-weight: bold;
 }

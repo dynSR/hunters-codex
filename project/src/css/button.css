@@ -2,9 +2,8 @@
   font-weight: normal;
   letter-spacing: var(--size-xs);
   border: solid;
+  border: var(--border-main);
   border-radius: var(--size-small);
-  border-color: var(--black-opaque);
-  border-width: var(--size-xs);
   background: none;
   padding: var(--size-medium) var(--size-large);
 }
@@ -15,8 +14,8 @@
 
 .btn:disabled {
   user-select: none;
-  color: var(--disabled-opaque);
-  background-color: var(--disabled-medium);
+  color: var(--grey-opaque);
+  background-color: var(--grey-medium);
 }
 
 .btn-primary {
