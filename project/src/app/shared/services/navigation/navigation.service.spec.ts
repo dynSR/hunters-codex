@@ -6,7 +6,7 @@ import {
   NavigationError,
 } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import '../extensions/string-extensions';
+import '../../extensions/string-extensions';
 
 import { NavigationService } from './navigation.service';
 
