@@ -1,0 +1,25 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--black-faint);
+  height: 100%;
+  width: 100%;
+}
+
+.card-header {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--black-faint);
+  color: var(--white);
+  height: var(--size-xl);
+  width: 100%;
+}
+
+.card-body {
+  background-color: var(--black-faint);
+  color: var(--white);
+  height: 100%;
+}

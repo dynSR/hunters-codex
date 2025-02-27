@@ -1,0 +1,15 @@
+.filter {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  width: var(--size-xl);
+  height: var(--size-xl);
+  border-color: var(--white-opaque);
+}
+
+.filter:hover:not(:disabled) {
+  opacity: var(--opacity-hover);
+  outline: var(--outline-main);
+  outline-offset: var(--outline-offset);
+}

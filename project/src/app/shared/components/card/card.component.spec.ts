@@ -1,18 +1,18 @@
 // import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-// import { WorldComponent } from './world.component';
+// import { CardComponent } from './card.component';
 
-// describe('WorldComponent', () => {
-//   let component: WorldComponent;
-//   let fixture: ComponentFixture<WorldComponent>;
+// describe('CardComponent', () => {
+//   let component: CardComponent;
+//   let fixture: ComponentFixture<CardComponent>;
 
 //   beforeEach(async () => {
 //     await TestBed.configureTestingModule({
-//       imports: [WorldComponent]
+//       imports: [CardComponent]
 //     })
 //     .compileComponents();
 
-//     fixture = TestBed.createComponent(WorldComponent);
+//     fixture = TestBed.createComponent(CardComponent);
 //     component = fixture.componentInstance;
 //     fixture.detectChanges();
 //   });

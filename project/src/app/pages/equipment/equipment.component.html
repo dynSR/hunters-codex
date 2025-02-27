@@ -1,1 +1,13 @@
-<p>equipment works!</p>
+<div class="equipment">
+  <div class="filters">
+    @for (filter of filters; track $index) {
+    <app-equipment-filter [filter]="filter" />
+    }
+  </div>
+
+  <div class="categories">
+    @for (category of categories; track $index) {
+    <app-equipment-category [equipmentCategory]="category" />
+    }
+  </div>
+</div>
