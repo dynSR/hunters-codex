@@ -94,7 +94,7 @@
                 "output": "/assets/"
               }
             ],
-            "styles": ["src/styles.css", "src/css/reset.css"],
+            "styles": ["src/styles.css"],
             "scripts": []
           }
         }
