@@ -9,7 +9,6 @@
   gap: var(--size-large);
   width: 100%;
   height: var(--size-fixed-xxl);
-  background-color: var(--black-faint);
 }
 
 .breadcrumb__separator::marker,
@@ -19,11 +18,7 @@
 }
 
 .breadcrumb__separator {
-  font-weight: lighter;
-}
-
-.breadcrumb__item--current {
-  text-transform: uppercase;
-  font-weight: bolder;
-  font-size: var(--font-size-link);
+  width: 0px;
+  font-weight: var(--weight-light);
+  font-size: var(--font-size-small);
 }

@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './user-menu.component.css',
 })
 export class UserMenuComponent {
-  isUserConnected: boolean = true;
+  isUserConnected: boolean = false;
   userName: string = 'Dylan SCHUMACKER';
   readonly loginRoute: RouteInfo = routeDefinition['login'];
   readonly logoutRoute: RouteInfo = routeDefinition['logout'];

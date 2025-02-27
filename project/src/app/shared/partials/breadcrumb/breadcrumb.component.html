@@ -4,14 +4,14 @@
     <!-- All navigation item -->
     @if($index < breadcrumbItems.length - 1) {
     <li class="breadcrumb__item">
-      <a [routerLink]="item.url" class="breadcrumb__link link">
+      <a [routerLink]="item.url" class="link">
         {{ item.name }}
       </a>
     </li>
     } @else {
     <!-- Current page -->
     <li class="breadcrumb__item">
-      <p class="breadcrumb__item--current">
+      <p class="link--current">
         {{ item.name }}
       </p>
     </li>

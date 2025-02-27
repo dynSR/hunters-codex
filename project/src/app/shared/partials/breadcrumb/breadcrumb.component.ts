@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { RouterLink } from '@angular/router';
-import { NavigationService } from '../../services/navigation.service';
+import { NavigationService } from '../../services/navigation/navigation.service';
 
 interface LinkProps {
   name: string;
