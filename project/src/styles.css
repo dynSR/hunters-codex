@@ -4,6 +4,18 @@
     format("opentype");
 }
 
+@font-face {
+  font-family: "Roboto";
+  src: url("/assets/fonts/Roboto/Roboto-VariableFont_wdth,wght.ttf")
+    format("opentype");
+}
+
+@font-face {
+  font-family: "Roboto-Slab";
+  src: url("/assets/fonts/Roboto_Slab/RobotoSlab-VariableFont_wght.ttf")
+    format("opentype");
+}
+
 :root {
   font-family: var(--font-main);
 
@@ -27,15 +39,13 @@
   /* ------ Danger */
   --danger-opaque: rgba(237, 37, 78, 1);
 
-  /* ------ Disabled */
-  --disabled-opaque: rgba(93, 115, 126, 1);
-  --disabled-medium: rgba(93, 115, 126, 0.5);
+  /* ------ Greys */
+  --grey-opaque: rgba(93, 115, 126, 1);
+  --grey-medium: rgba(93, 115, 126, 0.5);
 
   /* Size palette */
   /* ------ ^2 */
-
-  --size-none: 0px; /* 0px */
-  --size-xs: 1px; /* 1px */
+  --size-xs: 0.063rem; /* 1px */
   --size-tiny: 0.125rem; /* 2px */
   --size-small: 0.25rem; /* 4px */
   --size-medium: 0.5rem; /* 8px */
@@ -46,7 +56,6 @@
   --size-gigantic: 16rem; /* 256px */
   --size-colossal: 32rem; /* 512px */
 
-  --size-fixed-none: 0px;
   --size-fixed-xs: 1px;
   --size-fixed-tiny: 2px;
   --size-fixed-small: 4px;
@@ -73,20 +82,49 @@
   --size-content-height: calc(100dvh - var(--size-fixed-gigantic));
 
   /* Font families */
-  --font-main: "Atkinson", "Inter", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-main: "Atkinson", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-main-alt: "Roboto-Slab", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-link: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
   /* Font sizes */
   --font-size-title: var(--size-xl);
-  --font-size-subtitle: 1.5rem;
-  --font-size-main: 1.25rem;
-  --font-size-link: var(--size-large);
-  --font-size-small: var(0.875rem);
+  --font-size-subtitle: 1.125rem;
+  --font-size-main: var(--size-large);
+  --font-size-link: 0.875rem;
+  --font-size-small: 0.75rem;
+  --font-size-tiny: 0.5rem;
 
   /* Border related */
   --border-radius: var(--size-small);
   --border-width: var(--size-xs);
+  --border-main: solid var(--border-width) var(--black-opaque);
+
+  /* Weight palette */
+  --weight-light: 300;
+
+  /* Outline related */
+  --outline-main: solid var(--size-tiny) var(--black-opaque);
+  --outline-offset: var(--size-xs);
+
+  /* Opacity palette */
+  --opacity-opaque: 1;
+  --opacity-high: 0.8;
+  --opacity-medium: 0.5;
+  --opacity-low: 0.35;
+  --opacity-faint: 0.15;
+  --opacity-transparent: 0;
+  --opacity-hover: 0.65;
+}
+
+* {
+  min-height: 1px;
+}
+
+html {
+  height: 100%;
 }
 
 body {
