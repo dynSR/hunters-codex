@@ -53,30 +53,44 @@ export const routes: Routes = [
         (c) => c.EquipmentComponent
       ),
   },
-  {
-    title: routeDefinition['world'].title,
-    path: routeDefinition['world'].path,
-    pathMatch: 'full',
-    loadComponent: () =>
-      import('./pages/world/world.component').then((c) => c.WorldComponent),
-  },
-  {
-    title: routeDefinition['craftingList'].title,
-    path: routeDefinition['craftingList'].path,
-    pathMatch: 'full',
-    loadComponent: () =>
-      import('./pages/crafting-list/crafting-list.component').then(
-        (c) => c.CraftingListComponent
-      ),
-  },
+  // {
+  //   title: routeDefinition['world'].title,
+  //   path: routeDefinition['world'].path,
+  //   pathMatch: 'full',
+  //   loadComponent: () =>
+  //     import('./pages/world/world.component').then((c) => c.WorldComponent),
+  // },
+  // {
+  //   title: routeDefinition['craftingList'].title,
+  //   path: routeDefinition['craftingList'].path,
+  //   pathMatch: 'full',
+  //   loadComponent: () =>
+  //     import('./pages/crafting-list/crafting-list.component').then(
+  //       (c) => c.CraftingListComponent
+  //     ),
+  // },
   {
     title: routeDefinition['userProfile'].title,
     path: routeDefinition['userProfile'].path,
     pathMatch: 'full',
     loadComponent: () =>
-      import('./pages/user/user-profile/user-profile.component').then(
+      import('./pages/users/user-profile/user-profile.component').then(
         (c) => c.UserProfileComponent
       ),
+  },
+  {
+    title: routeDefinition['login'].title,
+    path: routeDefinition['login'].path,
+    pathMatch: 'full',
+    loadComponent: () =>
+      import('./auth/login/login.component').then((c) => c.LoginComponent),
+  },
+  {
+    title: routeDefinition['signup'].title,
+    path: routeDefinition['signup'].path,
+    pathMatch: 'full',
+    loadComponent: () =>
+      import('./auth/signup/signup.component').then((c) => c.SignupComponent),
   },
   {
     title: 'Error 404',
@@ -95,7 +109,7 @@ export const routes: Routes = [
       ),
   },
   {
-    title: 'Wildcard',
+    title: 'Not found',
     path: '**',
     loadComponent: () =>
       import('./shared/partials/not-found/not-found.component').then(
