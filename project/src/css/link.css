@@ -11,6 +11,7 @@
 .link:hover {
   cursor: pointer;
   color: var(--primary-opaque);
+  opacity: var(--opacity-hover);
   text-decoration: underline;
   text-underline-offset: var(--size-small);
   text-decoration-thickness: var(--size-small);

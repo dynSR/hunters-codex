@@ -18,5 +18,4 @@ export enum WeaponType {
   HeavyBowgun = 'Heavy Bowgun',
 }
 export interface WeaponCategory extends ItemCategory {}
-
 export interface Weapon extends Item {}

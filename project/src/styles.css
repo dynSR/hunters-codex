@@ -106,7 +106,8 @@
   --weight-light: 300;
 
   /* Outline related */
-  --outline-main: solid var(--size-tiny) var(--black-opaque);
+  --outline-tiny: solid var(--size-tiny) var(--black-opaque);
+  --outline-small: solid var(--size-small) var(--black-opaque);
   --outline-offset: var(--size-xs);
 
   /* Opacity palette */

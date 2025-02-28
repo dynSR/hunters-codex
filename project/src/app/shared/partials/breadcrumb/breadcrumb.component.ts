@@ -22,7 +22,7 @@ export class BreadcrumbComponent {
   breadcrumbItems: Array<LinkProps> = [];
 
   ngOnInit() {
-    this.navUrlSubscription = this.navigationService.urlObservable.subscribe(
+    this.navUrlSubscription = this.navigationService.urlObservable$.subscribe(
       (context) => {
         this.breadcrumbItems = [];
 

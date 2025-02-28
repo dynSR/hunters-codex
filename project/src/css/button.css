@@ -1,7 +1,6 @@
 .btn {
   font-weight: normal;
   letter-spacing: var(--size-xs);
-  border: solid;
   border: var(--border-main);
   border-radius: var(--size-small);
   background: none;
@@ -10,6 +9,9 @@
 
 .btn:hover:not(:disabled) {
   cursor: pointer;
+  opacity: var(--opacity-hover);
+  outline: var(--outline-small);
+  outline-offset: var(--outline-offset);
 }
 
 .btn:disabled {
@@ -26,4 +28,5 @@
 .btn-primary:hover:not(:disabled) {
   color: var(--primary-opaque);
   border-color: var(--primary-opaque);
+  outline-color: var(--primary-opaque);
 }

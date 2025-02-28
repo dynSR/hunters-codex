@@ -1,4 +1,16 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  ViewChild,
+} from '@angular/core';
+import { Selectable } from '../../interfaces/selectable';
+
+export interface Filter {
+  name: string;
+  icon: string;
+}
 
 @Component({
   selector: 'app-filter',
@@ -7,4 +19,45 @@ import { Component } from '@angular/core';
   templateUrl: './filter.component.html',
   styleUrl: './filter.component.css',
 })
-export class FilterComponent<T extends string | number> {}
+export class FilterComponent implements Selectable<FilterComponent> {
+  @Input({ required: true }) filter!: Filter;
+  @ViewChild('filterElement') htmlElement!: ElementRef<HTMLButtonElement>;
+
+  isSelected = false;
+  onClick = new EventEmitter<FilterComponent>();
+
+  defaultClass = 'filter';
+  selectedClass = 'filter--selected';
+
+  constructor() {}
+
+  toggleSelection(): void {
+    if (this.isSelected) {
+      this.deselect();
+    } else {
+      this.select();
+    }
+  }
+
+  select(): void {
+    const nativeElement = this.htmlElement.nativeElement;
+    if (
+      nativeElement.classList.replace(this.defaultClass, this.selectedClass)
+    ) {
+      this.isSelected = true;
+    }
+  }
+
+  deselect(): void {
+    const nativeElement = this.htmlElement.nativeElement;
+    if (
+      nativeElement.classList.replace(this.selectedClass, this.defaultClass)
+    ) {
+      this.isSelected = false;
+    }
+  }
+
+  onClickEvent(): void {
+    this.onClick.emit(this);
+  }
+}

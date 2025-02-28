@@ -6,6 +6,16 @@
   background-color: var(--black-faint);
   height: 100%;
   width: 100%;
+  user-select: none;
+  border: var(--border-main);
+  border-radius: var(--border-radius);
+}
+
+.card--clickable:hover {
+  cursor: pointer;
+  opacity: var(--opacity-hover);
+  outline: var(--outline-small);
+  outline-offset: var(--outline-offset);
 }
 
 .card-header {
@@ -14,7 +24,7 @@
   align-items: center;
   background-color: var(--black-faint);
   color: var(--white);
-  height: var(--size-xl);
+  height: var(--size-xxl);
   width: 100%;
 }
 
@@ -22,4 +32,11 @@
   background-color: var(--black-faint);
   color: var(--white);
   height: 100%;
+  overflow: hidden;
+}
+
+.card-footer {
+  height: var(--size-huge);
+  width: 100%;
+  background-color: var(--black-faint);
 }

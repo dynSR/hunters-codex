@@ -1,3 +1,8 @@
-<button class="btn filter">
-  <img class="filter-icon" src="/assets/svg/sun.svg" alt="" />
+<button
+  #filterElement
+  class="filter"
+  [title]="filter.name"
+  (click)="onClickEvent()"
+>
+  <img [src]="filter.icon" [alt]="filter.name" class="filter-icon" />
 </button>
