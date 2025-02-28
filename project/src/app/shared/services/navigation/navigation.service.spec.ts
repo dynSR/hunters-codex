@@ -49,7 +49,7 @@ describe('NavigationService', () => {
   it('should set loading to false and update context on NavigationEnd', () => {
     eventsSubject.next(new NavigationEnd(1, '/test', '/test'));
     expect(service.loading()).toBe(false);
-    service.urlObservable.subscribe((context) => {
+    service.urlObservable$.subscribe((context) => {
       expect(context.fullUrl).toBe('/test');
       expect(context.path).toEqual(['home', 'test']);
     });

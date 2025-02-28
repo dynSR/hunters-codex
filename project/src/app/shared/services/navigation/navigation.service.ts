@@ -28,7 +28,7 @@ export class NavigationService {
     fullUrl: '',
     path: [],
   });
-  urlObservable = this.subject.asObservable();
+  urlObservable$ = this.subject.asObservable();
 
   loading = signal(false);
 

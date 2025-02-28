@@ -4,7 +4,7 @@ import { RouteInfo } from './shared/interfaces/route-info';
 export const routeDefinition: { [key: string]: RouteInfo } = {
   home: {
     title: 'Home',
-    path: '',
+    path: 'home',
   },
   equipment: {
     title: 'Equipment',
