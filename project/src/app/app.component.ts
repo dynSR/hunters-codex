@@ -12,7 +12,7 @@ import { BreadcrumbComponent } from './shared/partials/breadcrumb/breadcrumb.com
     <app-header />
 
     <main>
-      <app-breadcrumb />
+      <app-breadcrumb [isDisplayed]="true" />
       <router-outlet />
     </main>
   `,
