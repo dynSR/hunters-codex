@@ -1,34 +1,49 @@
 import { Routes } from '@angular/router';
 import { RouteInfo } from './shared/interfaces/route-info';
 
+export enum PageName {
+  Home = 'home',
+  Equipment = 'equipment',
+  World = 'world',
+  CraftingList = 'crafting-list',
+  Weapons = 'weapons',
+  Login = 'login',
+  Logout = 'logout',
+  SignUp = 'signup',
+}
+
 export const routeDefinition: { [key: string]: RouteInfo } = {
   home: {
-    title: 'Home',
-    path: 'home',
+    title: PageName.Home.toCapitalized(),
+    path: PageName.Home,
   },
   equipment: {
-    title: 'Equipment',
-    path: 'equipment',
+    title: PageName.Equipment.toCapitalized(),
+    path: PageName.Equipment,
   },
   world: {
-    title: 'World',
-    path: 'world',
+    title: PageName.World.toCapitalized(),
+    path: PageName.World,
   },
   craftingList: {
-    title: 'Crafting List',
-    path: 'crafting-list',
+    title: PageName.CraftingList.fromKebabCaseToCapitals(),
+    path: PageName.CraftingList,
+  },
+  weapons: {
+    title: PageName.Weapons.toCapitalized(),
+    path: PageName.Weapons,
   },
   login: {
-    title: 'Log in',
-    path: 'login',
+    title: PageName.Login.toCapitalized(),
+    path: PageName.Login,
   },
   logout: {
-    title: 'Log out',
-    path: 'logout',
+    title: PageName.Logout.toCapitalized(),
+    path: PageName.Logout,
   },
   signup: {
-    title: 'Sign up',
-    path: 'signup',
+    title: PageName.SignUp.toCapitalized(),
+    path: PageName.SignUp,
   },
   userProfile: {
     title: 'User profile',
@@ -37,6 +52,11 @@ export const routeDefinition: { [key: string]: RouteInfo } = {
 };
 
 export const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'home',
+  },
   {
     title: routeDefinition['home'].title,
     path: routeDefinition['home'].path,
@@ -49,10 +69,28 @@ export const routes: Routes = [
     path: routeDefinition['equipment'].path,
     pathMatch: 'full',
     loadComponent: () =>
-      import('./pages/equipment/equipment.component').then(
+      import('./pages/equipments/equipment.component').then(
         (c) => c.EquipmentComponent
       ),
   },
+  {
+    title: routeDefinition['equipment'].title,
+    path: routeDefinition['equipment'].path + '/:category',
+    pathMatch: 'full',
+    loadComponent: () =>
+      import('./pages/weapons/weapon-list/weapon-list.component').then(
+        (c) => c.WeaponListComponent
+      ),
+  },
+  // {
+  //   title: routeDefinition['weapons'].title,
+  //   path: routeDefinition['weapons'].path + '/{id}',
+  //   pathMatch: 'full',
+  //   loadComponent: () =>
+  //     import('./pages/weapons/weapon-details/weapon-details.component').then(
+  //       (c) => c.WeaponDetailsComponent
+  //     ),
+  // },
   // {
   //   title: routeDefinition['world'].title,
   //   path: routeDefinition['world'].path,
