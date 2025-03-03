@@ -1,0 +1,36 @@
+<div #cardItem [routerLink]="item.routerLink" class="card container flex-v">
+  <!-- Card header block -->
+  <div class="card__header container flex-h">
+    @if (item.header.icon) {
+    <img
+      [src]="item.header.icon"
+      [alt]="item.header.headline"
+      class="card__icon"
+    />
+    }
+
+    <h4 aria-label="Card title" class="card__headline">
+      {{ item.header.headline }}
+    </h4>
+  </div>
+
+  <!-- Card body block -->
+  <div class="card__body container">
+    <img
+      [src]="item.body.image"
+      [alt]="item.header.headline"
+      class="card__image"
+    />
+  </div>
+
+  <!-- Card footer block -->
+  @if (item.footer.isDisplayed) {
+  <div class="card__footer container">
+    @if (item.footer.link) {
+    <a [routerLink]="item.footer.link" class="card__cta link">{{
+      item.footer.link
+    }}</a>
+    }
+  </div>
+  }
+</div>

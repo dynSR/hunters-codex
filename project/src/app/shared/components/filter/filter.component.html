@@ -1,8 +1,8 @@
 <button
   #filterElement
   class="filter"
-  [title]="filter.name"
+  [title]="filter.value"
   (click)="onClickEvent()"
 >
-  <img [src]="filter.icon" [alt]="filter.name" class="filter-icon" />
+  <img [src]="filter.icon" [alt]="filter.value" class="filter-icon" />
 </button>

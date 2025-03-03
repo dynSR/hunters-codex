@@ -1,0 +1,116 @@
+<div #cardItem [routerLink]="item.routerLink" class="card container flex-v">
+  <!-- Card header block -->
+  <div class="card__header container flex-h">
+    <h4 aria-label="Card title" class="card__headline">
+      {{ item.header.headline }}
+    </h4>
+  </div>
+
+  <!-- Card body block -->
+  <div class="card__body container">
+    <img
+      [src]="item.body.image"
+      [alt]="item.header.headline"
+      class="card__image"
+    />
+  </div>
+
+  <!-- Card footer block -->
+  @if (item.footer.isDisplayed) {
+  <div class="card__footer container flex-v">
+    <!-- 
+        Weapon info block, regroups : 
+        - Category
+        - Rarity
+        - Defense
+        - Decorations
+    -->
+    <div class="weapon-info container flex-v">
+      <!-- Weapon category and rarity block -->
+      <div class="weapon-category-rarity flex-h">
+        <p class="weapon-category w-100">{{ item.weapon.type }}</p>
+        <p class="weapon-rarity w-100">{{ "Rarity 12" }}</p>
+      </div>
+
+      <!-- Weapon defense and decorations block -->
+      <div class="weapon-defense-deco flex-h">
+        <div class="weapon-defense flex-h">
+          <img
+            src="/assets/icons/weapons/great-sword/great-sword-48.svg"
+            alt=""
+            class="icon"
+          />
+          <p>{{ "999" }}</p>
+        </div>
+        <div class="weapon-decorations flex-h"></div>
+      </div>
+    </div>
+
+    <!-- 
+        Weapon stats block, regroups : 
+        - Sharpness
+        - Raw damage
+        - Elemental damage
+        - Elderseal (can be equal to 0)
+        - Affinity
+    -->
+    <div class="weapon-stats container flex-v">
+      <!-- Weapon sharpness -->
+      <div class="weapon-sharpness flex-h h-100">
+        <img
+          src="/assets/icons/weapons/great-sword/great-sword-48.svg"
+          alt=""
+          class="icon"
+        />
+        <progress max="100" value="70"></progress>
+      </div>
+
+      <!-- Weapon damages block -->
+      <div class="weapon-damages container flex-h">
+        <!-- Weapon damages - RAW value -->
+        <div class="weapon-damages__raw flex-h">
+          <img
+            src="/assets/icons/weapons/great-sword/great-sword-48.svg"
+            alt=""
+            class="icon"
+          />
+          <p class="w-100">{{ "999" }}</p>
+        </div>
+
+        <!-- Weapon damages - ELEMENTAL value -->
+        <div class="weapon-damages__elemental container flex-h">
+          <img
+            src="/assets/icons/weapons/great-sword/great-sword-48.svg"
+            alt=""
+            class="icon"
+          />
+          <p>{{ "999" }}</p>
+        </div>
+      </div>
+
+      <!-- Weapon elderseal and affinity block -->
+      <div class="weapon-elder-affinity container flex-h">
+        <!-- Weapon elderseal value  -->
+        <div class="weapon-elder flex-h">
+          <img
+            src="/assets/icons/weapons/great-sword/great-sword-48.svg"
+            alt=""
+            class="icon"
+          />
+          <p class="w-100">{{ "999" }}</p>
+        </div>
+
+        <!-- Weapon affinity value  -->
+        <div class="weapon-affinity flex-h">
+          <img
+            src="/assets/icons/weapons/great-sword/great-sword-48.svg"
+            alt=""
+            class="icon"
+          />
+          <p>{{ "99" }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+</div>

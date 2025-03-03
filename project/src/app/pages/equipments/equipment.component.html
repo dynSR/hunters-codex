@@ -1,0 +1,26 @@
+<div class="equipment">
+  <div class="filters">
+    @for (filter of filters; track $index) {
+    <app-filter [filter]="filter" />
+    }
+  </div>
+
+  <!-- Item categories for either Weapons, Armors or Charms -->
+  <div class="categories">
+    <!-- First row -->
+    <div class="categories-row">
+      @for (cardItem of firstRow; track $index) {
+      <app-card [item]="cardItem" />
+      }
+    </div>
+
+    <!-- Second row -->
+    @if (secondRow.length > 0) {
+    <div class="categories-row">
+      @for (cardItem of secondRow; track $index) {
+      <app-card [item]="cardItem" />
+      }
+    </div>
+    }
+  </div>
+</div>

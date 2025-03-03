@@ -1,0 +1,84 @@
+/* Overrides card.component.css properties */
+.card,
+.card--clickable {
+  height: var(--size-weapon-card);
+}
+
+.card__header {
+  flex: 0.15;
+}
+
+.card__body {
+  flex: 0.35;
+}
+
+.card__footer {
+  flex: 0.5;
+  padding: 0;
+}
+/* Overrides card.component.css properties */
+
+.weapon-info,
+.weapon-stats {
+  padding: var(--size-small) var(--size-large);
+}
+
+.weapon-info {
+  justify-content: center;
+  flex: 0.4;
+  background-color: var(--black-opaque);
+  color: var(--white-opaque);
+}
+.weapon-stats {
+  flex: 0.6;
+}
+
+.weapon-category-rarity,
+.weapon-defense-deco,
+.weapon-damages,
+.weapon-elder-affinity {
+  gap: var(--size-xl);
+}
+
+.weapon-category,
+.weapon-rarity {
+  font-size: var(--font-size-small);
+}
+.weapon-defense,
+.weapon-decorations,
+.weapon-damages__raw,
+.weapon-damages__elemental,
+.weapon-elder,
+.weapon-affinity {
+  font-size: var(--font-size-link);
+}
+
+.weapon-rarity {
+  text-align: right;
+}
+
+.weapon-defense {
+  justify-content: flex-start;
+}
+.weapon-decorations {
+  justify-content: flex-end;
+}
+
+.weapon-defense,
+.weapon-sharpness,
+.weapon-damages__raw,
+.weapon-damages__elemental,
+.weapon-elder,
+.weapon-affinity {
+  gap: var(--size-small);
+}
+
+.weapon-damages__raw,
+.weapon-elder {
+  justify-content: flex-start;
+}
+
+.weapon-damages__elemental,
+.weapon-affinity {
+  justify-content: flex-end;
+}

@@ -1,4 +1,3 @@
-export interface ItemCategory {
-  name: string | number;
-  icon: string;
-}
+import { Identifiable } from './identifiable';
+
+export interface ItemCategory extends Identifiable {}

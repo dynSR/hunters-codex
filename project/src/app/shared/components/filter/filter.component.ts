@@ -8,9 +8,13 @@ import {
 import { Selectable } from '../../interfaces/selectable';
 
 export interface Filter {
-  name: string;
-  icon: string;
+  value: string | number;
+  icon?: string;
 }
+
+export const DEFAULT_FILTER: Filter = {
+  value: 'ALL',
+};
 
 @Component({
   selector: 'app-filter',

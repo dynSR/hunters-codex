@@ -1,6 +1,11 @@
 import { Subscription } from 'rxjs';
 import { Selectable } from '../../interfaces/selectable';
 
+/**
+ * This class is instantiated in another one that uses multiple selectable.
+ * It allows this component to track what is currently selected and what is not.
+ * In other word it manages multiple or single selection, with proper display.
+ */
 export class SelectionGroup<T extends Selectable<T>> {
   currentSelection: T | null = null;
   selectables: Array<T> = [];
@@ -39,19 +44,17 @@ export class SelectionGroup<T extends Selectable<T>> {
   }
 }
 
+/**
+ * A builder used to instantiate a new selection group class.
+ * @function withSelectionGroup defines all selectables within the group.
+ * @function withCurrentSelection allows to define a selection upon instantiation, serving as a first, default selection.
+ * @function withSelectionAction defines the behavior observed on selecting a selectable from the group.
+ *
+ */
 export class SelectionGroupBuilder<T extends Selectable<T>> {
   private builtGroup = new SelectionGroup<T>();
 
   constructor() {}
-
-  withCurrentSelection(currentSelection: T): SelectionGroupBuilder<T> {
-    this.builtGroup.currentSelection = currentSelection;
-
-    if (currentSelection !== null) {
-      this.builtGroup.selectOne(currentSelection);
-    }
-    return this;
-  }
 
   withSelectionGroup(selectionGroup: Array<T>): SelectionGroupBuilder<T> {
     this.builtGroup.selectables = selectionGroup;
@@ -64,7 +67,16 @@ export class SelectionGroupBuilder<T extends Selectable<T>> {
     return this;
   }
 
-  withOnSelectionAction(
+  withCurrentSelection(currentSelection: T): SelectionGroupBuilder<T> {
+    this.builtGroup.currentSelection = currentSelection;
+
+    if (currentSelection !== null) {
+      this.builtGroup.selectOne(currentSelection);
+    }
+    return this;
+  }
+
+  withSelectionAction(
     action: (selection: T) => void
   ): SelectionGroupBuilder<T> {
     this.builtGroup.onSelection = action;

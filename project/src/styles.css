@@ -68,17 +68,19 @@
   --size-fixed-colossal: 512px;
 
   /* ------ Grid */
-  --size-1gs: 7.5rem;
-  --size-2gs: 17rem;
-  --size-3gs: 26.5rem;
-  --size-4gs: 36rem;
-  --size-5gs: 41.5rem;
-  --size-6gs: 45.5rem;
-  --size-7gs: 55rem;
+  --size-1gs: 7.5rem; /* 120px */
+  --size-2gs: 17rem; /* 272px */
+  --size-3gs: 26.5rem; /* 424px */
+  --size-4gs: 36rem; /* 576px */
+  --size-5gs: 41.5rem; /* 664px */
+  --size-6gs: 45.5rem; /* 728px */
+  --size-7gs: 55rem; /* 880px */
 
   /* ------ Specific */
+  --size-icon: 1.5rem; /* 24px */
   --size-search-bar: 3rem; /* 48px */
   --size-list-item: 5rem; /* 80px */
+  --size-weapon-card: 18.75rem; /* 320px */
   --size-content-height: calc(100dvh - var(--size-fixed-gigantic));
 
   /* Font families */
@@ -90,12 +92,12 @@
     sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
   /* Font sizes */
-  --font-size-title: var(--size-xl);
-  --font-size-subtitle: 1.125rem;
-  --font-size-main: var(--size-large);
-  --font-size-link: 0.875rem;
-  --font-size-small: 0.75rem;
-  --font-size-tiny: 0.5rem;
+  --font-size-title: var(--size-xl); /* 32px */
+  --font-size-subtitle: 1.125rem; /* 18px */
+  --font-size-main: var(--size-large /* 16px */);
+  --font-size-link: 0.875rem; /* 14px */
+  --font-size-small: 0.75rem; /* 12px */
+  --font-size-tiny: 0.5rem; /* 8px */
 
   /* Border related */
   --border-radius: var(--size-small);
@@ -136,4 +138,41 @@ body {
 main {
   font-size: var(--font-size-main);
   margin-top: var(--size-fixed-xl);
+}
+
+.icon {
+  width: var(--size-large);
+  height: var(--size-large);
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.flex,
+.flex-h,
+.flex-v {
+  display: flex;
+  align-items: center;
+}
+
+.flex-h {
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.flex-v {
+  height: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.h-100 {
+  height: 100%;
 }
