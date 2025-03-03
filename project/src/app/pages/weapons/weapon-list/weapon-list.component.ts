@@ -58,7 +58,7 @@ export class WeaponListComponent {
           isDisplayed: true,
         },
         isClickable: true,
-        routerLink: weapon.name.toKebabCase(),
+        routerLink: weapon.name.toKebabCase(true),
       });
     }
   }
