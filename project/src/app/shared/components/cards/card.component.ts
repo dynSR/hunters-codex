@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { CardItem } from '../../interfaces/cards/card-item';
+import { CardItem } from '../../interfaces/cards/CardItem';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -18,20 +18,9 @@ export class CardComponent<T extends CardItem> {
 
   constructor() {}
 
-  ngOnInit() {}
-
   ngAfterViewInit() {
     this.initStyle();
-
-    this.cardItem.nativeElement.addEventListener('click', () => {
-      if (!this.item.isClickable) {
-        return;
-      }
-
-      if (this.item.onClick !== undefined) {
-        this.item.onClick();
-      }
-    });
+    this.initClickEventForEachCards();
   }
 
   private initStyle(): void {
@@ -42,5 +31,17 @@ export class CardComponent<T extends CardItem> {
         this.clickableClass
       );
     }
+  }
+
+  private initClickEventForEachCards(): void {
+    this.cardItem.nativeElement.addEventListener('click', () => {
+      if (!this.item.isClickable) {
+        return;
+      }
+
+      if (this.item.onClick !== undefined) {
+        this.item.onClick();
+      }
+    });
   }
 }

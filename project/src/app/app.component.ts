@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import './shared/extensions/string-extensions';
+import './shared/extensions/string.extension';
 import { HeaderComponent } from './shared/partials/header/header.component';
 import { BreadcrumbComponent } from './shared/partials/breadcrumb/breadcrumb.component';
 

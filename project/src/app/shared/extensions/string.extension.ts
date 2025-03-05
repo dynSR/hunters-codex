@@ -4,6 +4,7 @@ declare interface String {
   equals(s: string): boolean;
   toKebabCase(toLower?: boolean): string;
   fromKebabCaseToCapitals(): string;
+  toAndAssociation(): string;
 }
 
 String.prototype.isEmpty = function (this: string): boolean {
@@ -31,4 +32,12 @@ String.prototype.fromKebabCaseToCapitals = function (this: string): string {
   const content = this.split('-');
   content.forEach((s, i) => (content[i] = content[i].toCapitalized()));
   return content.join(' ');
+};
+
+String.prototype.toAndAssociation = function (this: string): string {
+  return this.split('').reduce((_, curr) => {
+    console.log('current', curr);
+
+    return `${curr.toLocaleUpperCase()}n${curr.toLocaleUpperCase()}`;
+  }, '');
 };

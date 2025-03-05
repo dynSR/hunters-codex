@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { RouteInfo } from '../../interfaces/route-info';
+import { RouteInfo } from '../../interfaces/RouteInfo';
 import { routeDefinition } from '../../../app.routes';
 import { CommonModule } from '@angular/common';
 

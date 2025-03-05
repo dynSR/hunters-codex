@@ -5,15 +5,15 @@ import {
   Input,
   ViewChild,
 } from '@angular/core';
-import { Selectable } from '../../interfaces/selectable';
+import { Selectable } from '../../interfaces/Selectable';
 
 export interface Filter {
-  value: string | number;
-  icon?: string;
+  value: Lowercase<string> | number;
+  icon?: Lowercase<string>;
 }
 
 export const DEFAULT_FILTER: Filter = {
-  value: 'ALL',
+  value: 'ALL' as Lowercase<string>,
 };
 
 @Component({

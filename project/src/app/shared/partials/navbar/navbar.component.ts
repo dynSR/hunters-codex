@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { routeDefinition, routes } from '../../../app.routes';
 import { CommonModule } from '@angular/common';
-import { RouteInfo } from '../../interfaces/route-info';
+import { RouteInfo } from '../../interfaces/RouteInfo';
 
 @Component({
   selector: 'app-navbar',

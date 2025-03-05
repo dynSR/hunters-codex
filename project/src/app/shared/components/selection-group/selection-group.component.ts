@@ -1,5 +1,5 @@
 import { Subscription } from 'rxjs';
-import { Selectable } from '../../interfaces/selectable';
+import { Selectable } from '../../interfaces/Selectable';
 
 /**
  * This class is instantiated in another one that uses multiple selectable.

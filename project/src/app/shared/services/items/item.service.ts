@@ -1,14 +1,14 @@
 import { inject, Injectable } from '@angular/core';
-import '../../extensions/string-extensions';
-import { ItemCategory } from '../../interfaces/items/item-category';
+import '../../extensions/string.extension';
+import { ItemCategory } from '../../interfaces/items/ItemCategory';
 import { ArmorService } from './armor.service';
 import { WeaponService } from './weapon.service';
-import { WEAPONS_ICON_FOLDER_PATH } from '../../models/weapon';
-import { ARMORS_ICON_FOLDER_PATH } from '../../models/armor';
+import { WEAPONS_ICON_FOLDER_PATH } from '../../models/stats/weapon/Weapon';
+import { ARMORS_ICON_FOLDER_PATH } from '../../models/Armor';
 
 export enum EquipmentType {
-  Weapons = 'Weapons',
-  Armors = 'Armors',
+  Weapons = 'weapons',
+  Armors = 'armors',
 }
 export interface EquipmentCategory extends ItemCategory {}
 
@@ -24,17 +24,19 @@ export class ItemService {
   public getEquipmentCategories(): Array<EquipmentCategory> {
     return [
       {
-        name: EquipmentType.Weapons,
+        name: EquipmentType.Weapons as Capitalize<string>,
         metadata: {
-          slug: EquipmentType.Weapons.toLocaleLowerCase(),
-          icon: WEAPONS_ICON_FOLDER_PATH + 'great-sword/great-sword-24.svg',
+          slug: EquipmentType.Weapons.toLocaleLowerCase() as Lowercase<string>,
+          icon: (WEAPONS_ICON_FOLDER_PATH +
+            'great-sword/great-sword-24.svg') as Lowercase<string>,
         },
       },
       {
-        name: EquipmentType.Armors,
+        name: EquipmentType.Armors as Capitalize<string>,
         metadata: {
-          slug: EquipmentType.Armors.toLocaleLowerCase(),
-          icon: ARMORS_ICON_FOLDER_PATH + 'chests/chests-24.svg',
+          slug: EquipmentType.Armors.toLocaleLowerCase() as Lowercase<string>,
+          icon: (ARMORS_ICON_FOLDER_PATH +
+            'chests/chests-24.svg') as Lowercase<string>,
         },
       },
     ];

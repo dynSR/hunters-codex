@@ -28,7 +28,9 @@
     <div class="weapon-info container flex-v">
       <!-- Weapon category and rarity block -->
       <div class="weapon-category-rarity flex-h">
-        <p class="weapon-category w-100">{{ item.weapon.type }}</p>
+        <p class="weapon-category w-100">
+          {{ item.weapon.category.metadata.abbreviation }}
+        </p>
         <p class="weapon-rarity w-100">{{ "Rarity 12" }}</p>
       </div>
 

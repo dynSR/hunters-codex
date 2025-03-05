@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { CardComponent } from '../card.component';
 import { RouterLink } from '@angular/router';
-import { WeaponCard } from '../../../interfaces/cards/weapon-card';
+import { WeaponCard } from '../../../interfaces/cards/WeaponCard';
+import '../../../extensions/string.extension';
 
 @Component({
   selector: 'app-weapon-card',

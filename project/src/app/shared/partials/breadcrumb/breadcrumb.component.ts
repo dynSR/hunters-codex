@@ -30,6 +30,9 @@ export class BreadcrumbComponent {
       (context) => {
         this.breadcrumbItems = [];
 
+        /**
+         * When the context path only contains home as path
+         */
         if (context.path.length === 1) {
           this.breadcrumbItems = [
             {
@@ -41,19 +44,19 @@ export class BreadcrumbComponent {
         }
 
         for (let i = 0; i < context.path.length; i++) {
-          const element = context.path[i];
-          const previousElement = context.path[i - 1];
-          let url = element;
+          const path = context.path[i];
+          const previousPath = context.path[i - 1];
+          let url = path;
 
           if (
-            previousElement &&
-            previousElement !== routeDefinition[PageName.Home].path
+            previousPath &&
+            previousPath !== routeDefinition[PageName.Home].path
           ) {
-            url = previousElement + '/' + element;
+            url = previousPath + '/' + path;
           }
 
           this.breadcrumbItems.push({
-            name: element,
+            name: path,
             url: url,
           });
         }

@@ -2,9 +2,9 @@
  * Represents the essential basic properties of a category or an item.
  */
 export interface ItemMetadata {
-  abbreviation?: string;
-  slug: string;
-  icon: string;
+  abbreviation?: Uppercase<string>;
+  slug: Lowercase<string>;
+  icon: Lowercase<string>;
 }
 
 /**
@@ -14,6 +14,6 @@ export interface ItemMetadata {
  */
 export interface Identifiable {
   id?: number;
-  name: string;
-  metadata: ItemMetadata;
+  name: Capitalize<string>;
+  metadata: Readonly<ItemMetadata>;
 }

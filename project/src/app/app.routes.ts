@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { RouteInfo } from './shared/interfaces/route-info';
+import { RouteInfo } from './shared/interfaces/RouteInfo';
 
 export enum PageName {
   Home = 'home',

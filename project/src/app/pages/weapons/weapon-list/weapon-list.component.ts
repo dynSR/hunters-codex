@@ -1,23 +1,26 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WeaponService } from '../../../shared/services/items/weapon.service';
-import { Weapon, WeaponType } from '../../../shared/models/weapon';
-import '../../../shared/extensions/string-extensions';
-import { FilterComponent } from '../../../shared/components/filter/filter.component';
+import { Weapon, WeaponType } from '../../../shared/models/stats/weapon/Weapon';
+import '../../../shared/extensions/string.extension';
 import { WeaponCardComponent } from '../../../shared/components/cards/weapon-card/weapon-card.component';
-import { WeaponCard } from '../../../shared/interfaces/cards/weapon-card';
+import { WeaponCard } from '../../../shared/interfaces/cards/WeaponCard';
+
+import { SharpnessLevelColor } from '../../../shared/models/stats/sharpness-levels/SharpnessLevel';
+import {
+  Sharpness,
+  SharpnessBuilder,
+} from '../../../shared/models/stats/weapon/Sharpness';
 
 @Component({
   selector: 'app-weapon-list',
   standalone: true,
-  imports: [FilterComponent, WeaponCardComponent], //TODO: Add search bar
+  imports: [WeaponCardComponent], //TODO: Add search bar and filters
   templateUrl: './weapon-list.component.html',
   styleUrl: './weapon-list.component.css',
 })
 export class WeaponListComponent {
   private weapons = Array<Weapon>();
-  private weaponCategory: string = '';
-
   cardItems = new Array<WeaponCard>();
 
   private readonly route = inject(ActivatedRoute);
@@ -26,30 +29,45 @@ export class WeaponListComponent {
   constructor() {}
 
   ngOnInit() {
-    this.weaponCategory =
-      this.route.snapshot.params['category'].fromKebabCaseToCapitals();
-
     this.fetchWeapons();
+
+    const weaponSharpness: Sharpness = new SharpnessBuilder()
+      .withSharpness(SharpnessLevelColor.Red, 1 / 7)
+      .withSharpness(SharpnessLevelColor.Orange, 1 / 7)
+      .withSharpness(SharpnessLevelColor.Yellow, 1 / 7)
+      .withSharpness(SharpnessLevelColor.Green, 1 / 7)
+      .withSharpness(SharpnessLevelColor.Blue, 1 / 7)
+      .withSharpness(SharpnessLevelColor.White, 1 / 7)
+      .withSharpness(SharpnessLevelColor.Purple, 1 / 7)
+      .build();
+    console.log(weaponSharpness);
   }
 
+  /**
+   * Calls the weapon service to get all weapons based on a search criteria.
+   * Then call the function to set the card items.
+   */
   fetchWeapons(): void {
     this.weapons = this.weaponService.getWeaponsByCriteria({
-      type: this.weaponCategory as WeaponType,
+      type: this.route.snapshot.params['category'] as Lowercase<WeaponType>,
     });
 
-    this.setCardItems();
+    this.weapons.forEach((w) => console.log(w));
+
+    this.setCardItems(this.weapons);
   }
 
-  public setCardItems(): void {
+  /**
+   * Creates a group of card items based on the amount of weapons found.
+   */
+  public setCardItems(weapons: Array<Weapon>): void {
     this.cardItems = [];
 
-    for (let i = 0; i < this.weapons.length; i++) {
-      const weapon = this.weapons[i];
-
+    weapons.forEach((weapon) =>
       this.cardItems.push({
         weapon: weapon,
         header: {
-          headline: weapon.name.toLocaleUpperCase(),
+          headline: weapon.name.toLocaleUpperCase() as Uppercase<string>,
         },
         body: {
           image: weapon.image,
@@ -58,8 +76,8 @@ export class WeaponListComponent {
           isDisplayed: true,
         },
         isClickable: true,
-        routerLink: weapon.name.toKebabCase(true),
-      });
-    }
+        routerLink: weapon.name.toKebabCase(true) as Lowercase<string>,
+      })
+    );
   }
 }
