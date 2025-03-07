@@ -130,8 +130,3 @@
 * {
   min-height: 1px;
 }
-
-.icon {
-  width: var(--size-large);
-  height: var(--size-large);
-}
