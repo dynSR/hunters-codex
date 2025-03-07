@@ -1,4 +1,4 @@
-<div class="equipment">
+<div class="equipment-content container is-fluid is-paddingless">
   <div class="filters">
     @for (filter of filters; track $index) {
     <app-filter [filter]="filter" />
@@ -6,21 +6,16 @@
   </div>
 
   <!-- Item categories for either Weapons, Armors or Charms -->
-  <div class="categories">
-    <!-- First row -->
-    <div class="categories-row">
-      @for (cardItem of firstRow; track $index) {
-      <app-card [item]="cardItem" />
-      }
-    </div>
-
-    <!-- Second row -->
-    @if (secondRow.length > 0) {
-    <div class="categories-row">
-      @for (cardItem of secondRow; track $index) {
-      <app-card [item]="cardItem" />
-      }
-    </div>
-    }
-  </div>
+  @if (selectedFilter.value.toString().equals(EquipmentType.Armors) ) {
+  <app-item-categories
+    [filter]="selectedFilter.value.toString()"
+    [categories]="equipmentCategories"
+    class="container is-fluid p-0"
+  />
+  } @else {
+  <app-item-categories
+    [categories]="equipmentCategories"
+    class="container is-fluid p-0"
+  />
+  }
 </div>

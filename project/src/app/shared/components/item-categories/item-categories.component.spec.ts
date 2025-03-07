@@ -1,18 +1,18 @@
 // import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-// import { Error404Component } from './error-404.component';
+// import { ItemCategoriesComponent } from './item-categories.component';
 
-// describe('Error404Component', () => {
-//   let component: Error404Component;
-//   let fixture: ComponentFixture<Error404Component>;
+// describe('ItemCategoriesComponent', () => {
+//   let component: ItemCategoriesComponent;
+//   let fixture: ComponentFixture<ItemCategoriesComponent>;
 
 //   beforeEach(async () => {
 //     await TestBed.configureTestingModule({
-//       imports: [Error404Component]
+//       imports: [ItemCategoriesComponent]
 //     })
 //     .compileComponents();
 
-//     fixture = TestBed.createComponent(Error404Component);
+//     fixture = TestBed.createComponent(ItemCategoriesComponent);
 //     component = fixture.componentInstance;
 //     fixture.detectChanges();
 //   });

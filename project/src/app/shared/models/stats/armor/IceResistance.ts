@@ -10,6 +10,5 @@ export interface IceResistance extends ElementalResistance {}
 
 export const ICE_RES_METADATA: Required<ItemMetadata> = {
   abbreviation: '',
-  slug: '',
   icon: '',
 };

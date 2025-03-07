@@ -1,29 +1,29 @@
 @if (isDisplayed) {
-<nav aria-label="Breadcrumb" class="breadcrumb">
-  <ol class="breadcrumb__list">
+<nav
+  class="breadcrumb is-small container is-fluid mb-5"
+  aria-label="breadcrumbs"
+>
+  <ul>
     @for (item of breadcrumbItems; track $index) {
     <!-- All navigation item -->
     @if($index < breadcrumbItems.length - 1) {
-    <li class="breadcrumb__item">
-      <a [routerLink]="item.url" class="link">
-        {{ item.name }}
+    <li>
+      <a [routerLink]="item.url">
+        {{ item.name | uppercase }}
       </a>
     </li>
     } @else {
     <!-- Current page -->
-    <li class="breadcrumb__item">
-      <p class="link--current">
-        {{ item.name }}
-      </p>
-    </li>
-    }
-
-    <!-- All separators -->
-    @if($index < breadcrumbItems.length - 1) {
-    <li class="breadcrumb__separator" aria-hidden="true">
-      {{ "|" }}
+    <li class="is-active">
+      <a
+        href="#"
+        class="has-text-dark has-text-weight-bold"
+        aria-current="page"
+      >
+        {{ item.name | uppercase }}
+      </a>
     </li>
     } }
-  </ol>
+  </ul>
 </nav>
 }

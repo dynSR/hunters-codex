@@ -8,6 +8,5 @@ export interface Defense extends Stat {}
 
 export const DEFENSE_METADATA: Required<ItemMetadata> = {
   abbreviation: '',
-  slug: '',
   icon: '',
 };

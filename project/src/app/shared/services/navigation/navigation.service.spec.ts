@@ -51,7 +51,7 @@ describe('NavigationService', () => {
     expect(service.loading()).toBe(false);
     service.urlObservable$.subscribe((context) => {
       expect(context.fullUrl).toBe('/test');
-      expect(context.path).toEqual(['home', 'test']);
+      expect(context.paths).toEqual(['home', 'test']);
     });
   });
 

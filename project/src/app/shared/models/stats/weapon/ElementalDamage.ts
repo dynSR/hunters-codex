@@ -16,6 +16,5 @@ export interface ElementalDamage extends Stat {
 
 export const ELEMENTAL_DAMAGE_METADATA: Required<ItemMetadata> = {
   abbreviation: '',
-  slug: '',
   icon: '',
 };

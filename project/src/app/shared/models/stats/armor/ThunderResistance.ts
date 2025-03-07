@@ -10,6 +10,5 @@ export interface ThunderResistance extends ElementalResistance {}
 
 export const THUNDER_RES_METADATA: Required<ItemMetadata> = {
   abbreviation: '',
-  slug: '',
   icon: '',
 };

@@ -1,5 +1,4 @@
 import { Identifiable, ItemMetadata } from './Identifiable';
-import '../../extensions/string.extension';
 
 export interface ItemCategory extends Identifiable {}
 
@@ -7,9 +6,10 @@ export class ItemCategoryBuilder {
   private readonly itemCategory: Required<ItemCategory> = {
     id: 0,
     name: '',
+    slug: '',
+    description: '',
     metadata: {
       abbreviation: '',
-      slug: '',
       icon: '',
     },
   };
@@ -28,12 +28,26 @@ export class ItemCategoryBuilder {
     return this;
   }
 
-  withName(name: Capitalize<string>): ItemCategoryBuilder {
+  withName(name: string): ItemCategoryBuilder {
     if (name.isEmpty()) {
       console.error(`The item category name cannot be empty or null.`);
     }
 
     this.itemCategory.name = name;
+    return this;
+  }
+
+  withSlug(slug: string): ItemCategoryBuilder {
+    if (slug.isEmpty()) {
+      console.error(`The item category slug cannot be empty or null.`);
+    }
+
+    this.itemCategory.slug = slug;
+    return this;
+  }
+
+  withDescription(description: string): ItemCategoryBuilder {
+    this.itemCategory.description = description;
     return this;
   }
 

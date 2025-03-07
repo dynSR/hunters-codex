@@ -1,32 +1,12 @@
-.filter,
-.filter--selected {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  width: var(--size-xxl);
-  height: 100%;
-  border: var(--border-main);
-  border-radius: var(--size-small);
-  background: none;
-}
-
 .filter:hover {
-  cursor: pointer;
   opacity: var(--opacity-hover);
   outline: var(--outline-small);
   outline-offset: var(--outline-offset);
 }
 
 .filter--selected {
-  background-color: var(--grey-medium);
-  color: var(--white);
+  background-color: var(--bulma-grey);
   outline: var(--outline-small);
   outline-offset: var(--outline-offset);
-  outline-color: var(--grey-medium);
-}
-
-.filter-icon {
-  width: var(--size-xl);
-  height: var(--size-xl);
+  outline-color: var(--bulma-grey);
 }

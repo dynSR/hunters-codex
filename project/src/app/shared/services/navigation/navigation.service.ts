@@ -7,6 +7,7 @@ import {
   Router,
 } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import '../../extensions/string.extension';
 
 /**
  * Navigation context interface
@@ -15,7 +16,7 @@ import { BehaviorSubject } from 'rxjs';
  */
 interface NavigationContext {
   fullUrl: string;
-  path: Array<string>;
+  paths: Array<string>;
 }
 
 @Injectable({
@@ -26,7 +27,7 @@ export class NavigationService {
 
   private readonly subject = new BehaviorSubject<NavigationContext>({
     fullUrl: '',
-    path: [],
+    paths: [],
   });
   urlObservable$ = this.subject.asObservable();
 
@@ -45,7 +46,7 @@ export class NavigationService {
 
           this.subject.next({
             fullUrl: e.url,
-            path: this.getContextPath(e.url),
+            paths: this.getContextPath(e.url),
           });
           break;
         // Represents a failed navigation attempt

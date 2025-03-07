@@ -6,7 +6,7 @@ import { SharpnessLevel } from './SharpnessLevel';
  */
 export class WhiteSharpnessLevel implements SharpnessLevel {
   value: number = 0;
-  color: Uppercase<string> = 'FFFFFF';
+  color: string = 'FFFFFF';
   rawDamageMultiplier: number = 1.32;
   elementalDamageMultiplier: number = 1.15;
 

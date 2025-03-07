@@ -46,16 +46,17 @@ export class SelectionGroup<T extends Selectable<T>> {
 
 /**
  * A builder used to instantiate a new selection group class.
- * @function withSelectionGroup defines all selectables within the group.
- * @function withCurrentSelection allows to define a selection upon instantiation, serving as a first, default selection.
- * @function withSelectionAction defines the behavior observed on selecting a selectable from the group.
- *
  */
 export class SelectionGroupBuilder<T extends Selectable<T>> {
   private builtGroup = new SelectionGroup<T>();
 
   constructor() {}
 
+  /**
+   * Defines all selectables within the group to track their selection state, thus multiple or single selection.
+   * @param selectionGroup are all the selectables used in the group.
+   * @returns SelectionGroupBuilder<T>
+   */
   withSelectionGroup(selectionGroup: Array<T>): SelectionGroupBuilder<T> {
     this.builtGroup.selectables = selectionGroup;
 
@@ -67,6 +68,11 @@ export class SelectionGroupBuilder<T extends Selectable<T>> {
     return this;
   }
 
+  /**
+   * Allows to define a selection upon instantiation, serving as a first, default selection.
+   * @param currentSelection the first element selected on init.
+   * @returns SelectionGroupBuilder<T>
+   */
   withCurrentSelection(currentSelection: T): SelectionGroupBuilder<T> {
     this.builtGroup.currentSelection = currentSelection;
 
@@ -76,6 +82,11 @@ export class SelectionGroupBuilder<T extends Selectable<T>> {
     return this;
   }
 
+  /**
+   * Defines the behavior on selecting a selectable from the group.
+   * @param action the callback to invoke upon selection.
+   * @returns SelectionGroupBuilder<T>
+   */
   withSelectionAction(
     action: (selection: T) => void
   ): SelectionGroupBuilder<T> {
@@ -84,6 +95,7 @@ export class SelectionGroupBuilder<T extends Selectable<T>> {
   }
 
   build(): SelectionGroup<T> {
+    // Add constraints here before returning the built selection group.
     return this.builtGroup;
   }
 }

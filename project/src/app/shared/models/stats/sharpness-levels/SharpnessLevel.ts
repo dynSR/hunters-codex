@@ -10,7 +10,7 @@ export enum SharpnessLevelColor {
 
 export interface SharpnessLevel {
   value: number;
-  color: Uppercase<string>;
+  color: string;
   rawDamageMultiplier: number;
   elementalDamageMultiplier: number;
 }

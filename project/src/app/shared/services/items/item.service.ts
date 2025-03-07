@@ -1,5 +1,4 @@
 import { inject, Injectable } from '@angular/core';
-import '../../extensions/string.extension';
 import { ItemCategory } from '../../interfaces/items/ItemCategory';
 import { ArmorService } from './armor.service';
 import { WeaponService } from './weapon.service';
@@ -24,19 +23,17 @@ export class ItemService {
   public getEquipmentCategories(): Array<EquipmentCategory> {
     return [
       {
-        name: EquipmentType.Weapons as Capitalize<string>,
+        name: EquipmentType.Weapons,
+        slug: EquipmentType.Weapons,
         metadata: {
-          slug: EquipmentType.Weapons.toLocaleLowerCase() as Lowercase<string>,
-          icon: (WEAPONS_ICON_FOLDER_PATH +
-            'great-sword/great-sword-24.svg') as Lowercase<string>,
+          icon: WEAPONS_ICON_FOLDER_PATH + 'great-sword/great-sword-24.svg',
         },
       },
       {
-        name: EquipmentType.Armors as Capitalize<string>,
+        name: EquipmentType.Armors,
+        slug: EquipmentType.Armors,
         metadata: {
-          slug: EquipmentType.Armors.toLocaleLowerCase() as Lowercase<string>,
-          icon: (ARMORS_ICON_FOLDER_PATH +
-            'chests/chests-24.svg') as Lowercase<string>,
+          icon: ARMORS_ICON_FOLDER_PATH + 'chests/chests-24.svg',
         },
       },
     ];

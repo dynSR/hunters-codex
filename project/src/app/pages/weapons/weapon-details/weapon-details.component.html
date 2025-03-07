@@ -1,1 +1,44 @@
-<p>weapon-details works!</p>
+<div class="weapon-details flex-h">
+  <!-- Left side : weapon image -->
+  <img src="" alt="" class="weapon-image" />
+
+  <!-- Right side : weapon information -->
+  <div class="weapon-info container flex-v">
+    <!-- Weapon info HEADER -->
+    <div class="weapon-info__header flex-h">
+      <!-- Weapon info : weapon name and rarity block -->
+      <div class="header__weapon-name-rarity container flex-v">
+        <!-- Weapon info : weapon name -->
+        <h1 class="weapon-name">
+          {{ weaponName }}
+        </h1>
+        <!-- Weapon info : weapon rarity -->
+        <small class="weapon-rarity">{{ "— RARITY 9" }}</small>
+      </div>
+      <!-- Weapon info : weapon category -->
+      <div class="header__weapon-category flex-h h-100">
+        <img src="" alt="" class="icon" />
+        <a [routerLink]="" class="link">
+          {{ weaponCategory }}
+        </a>
+      </div>
+    </div>
+    <!-- Weapon info BODY -->
+    <div class="weapon-info__body container flex-v">
+      <!-- Weapon description -->
+      <div class="body__weapon-description">
+        <h4 class="w-100">{{ "Description" | uppercase }}</h4>
+        <p class="weapon-description">{{ weapon.description }}</p>
+      </div>
+      <!-- Block containing stats, set, decorations and skill(s) -->
+      <div class="container flex-h">
+        <!-- Weapon stats -->
+        <div class="body__weapon-stats flex-v"></div>
+
+        <!-- Block containing weapon associated set, decorations and skill(s) -->
+        <div class="container flex-v"></div>
+      </div>
+    </div>
+    <div class="weapon-info__footer container"></div>
+  </div>
+</div>

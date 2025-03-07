@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import './shared/extensions/string.extension';
-import { HeaderComponent } from './shared/partials/header/header.component';
 import { BreadcrumbComponent } from './shared/partials/breadcrumb/breadcrumb.component';
+import { NavbarComponent } from './shared/partials/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, BreadcrumbComponent],
+  imports: [RouterOutlet, NavbarComponent, BreadcrumbComponent],
   template: `
-    <app-header />
+    <app-navbar />
 
     <main>
       <app-breadcrumb [isDisplayed]="true" />

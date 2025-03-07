@@ -1,8 +1,13 @@
 <button
   #filterElement
-  class="filter"
+  class="filter button"
   [title]="filter.value"
   (click)="onClickEvent()"
 >
-  <img [src]="filter.icon" [alt]="filter.value" class="filter-icon" />
+  <img
+    [src]="filter.icon"
+    [alt]="filter.value"
+    loading="lazy"
+    class="image is-32x32"
+  />
 </button>

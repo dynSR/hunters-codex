@@ -8,6 +8,5 @@ export interface RawDamage extends Stat {}
 
 export const RAW_DAMAGE_METADATA: Required<ItemMetadata> = {
   abbreviation: '',
-  slug: '',
   icon: '',
 };

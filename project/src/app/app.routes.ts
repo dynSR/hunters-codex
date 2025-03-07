@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
 import { RouteInfo } from './shared/interfaces/RouteInfo';
+import './shared/extensions/string.extension';
+import { CaseFlags } from './shared/enums/case-flags';
 
 export enum PageName {
   Home = 'home',
@@ -14,138 +16,86 @@ export enum PageName {
 
 export const routeDefinition: { [key: string]: RouteInfo } = {
   home: {
-    title: PageName.Home.toCapitalized(),
+    title: PageName.Home.toCase(CaseFlags.Titlecase),
     path: PageName.Home,
   },
   equipment: {
-    title: PageName.Equipment.toCapitalized(),
+    title: PageName.Equipment.toCase(CaseFlags.Titlecase),
     path: PageName.Equipment,
   },
   world: {
-    title: PageName.World.toCapitalized(),
+    title: PageName.World.toCase(CaseFlags.Titlecase),
     path: PageName.World,
   },
   craftingList: {
-    title: PageName.CraftingList.fromKebabCaseToCapitals(),
+    title: PageName.CraftingList.toCase(CaseFlags.Titlecase),
     path: PageName.CraftingList,
   },
-  weapons: {
-    title: PageName.Weapons.toCapitalized(),
-    path: PageName.Weapons,
+  weaponList: {
+    title: PageName.Weapons.toCase(CaseFlags.Titlecase),
+    path: `${PageName.Equipment}/:category`,
+  },
+  weaponDetails: {
+    title: PageName.Weapons.toCase(CaseFlags.Titlecase),
+    path: `${PageName.Equipment}/:category/:slug`,
   },
   login: {
-    title: PageName.Login.toCapitalized(),
+    title: PageName.Login.toCase(CaseFlags.Titlecase),
     path: PageName.Login,
   },
   logout: {
-    title: PageName.Logout.toCapitalized(),
+    title: PageName.Logout.toCase(CaseFlags.Titlecase),
     path: PageName.Logout,
   },
   signup: {
-    title: PageName.SignUp.toCapitalized(),
+    title: PageName.SignUp.toCase(CaseFlags.Titlecase),
     path: PageName.SignUp,
-  },
-  userProfile: {
-    title: 'User profile',
-    path: 'profile',
   },
 };
 
 export const routes: Routes = [
+  // Home, base path routes definition
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'home',
+    redirectTo: PageName.Home,
   },
   {
-    title: routeDefinition['home'].title,
-    path: routeDefinition['home'].path,
+    path: routeDefinition[PageName.Home].path,
     pathMatch: 'full',
     loadComponent: () =>
       import('./pages/home/home.component').then((c) => c.HomeComponent),
   },
+
+  // Equipment route definition
   {
-    title: routeDefinition['equipment'].title,
-    path: routeDefinition['equipment'].path,
+    path: routeDefinition[PageName.Equipment].path,
     pathMatch: 'full',
     loadComponent: () =>
       import('./pages/equipments/equipment.component').then(
         (c) => c.EquipmentComponent
       ),
   },
+
+  // Weapon related routes definition
   {
-    title: routeDefinition['equipment'].title,
-    path: routeDefinition['equipment'].path + '/:category',
+    path: routeDefinition['weaponList'].path,
     pathMatch: 'full',
     loadComponent: () =>
       import('./pages/weapons/weapon-list/weapon-list.component').then(
         (c) => c.WeaponListComponent
       ),
   },
-  // {
-  //   title: routeDefinition['weapons'].title,
-  //   path: routeDefinition['weapons'].path + '/{id}',
-  //   pathMatch: 'full',
-  //   loadComponent: () =>
-  //     import('./pages/weapons/weapon-details/weapon-details.component').then(
-  //       (c) => c.WeaponDetailsComponent
-  //     ),
-  // },
-  // {
-  //   title: routeDefinition['world'].title,
-  //   path: routeDefinition['world'].path,
-  //   pathMatch: 'full',
-  //   loadComponent: () =>
-  //     import('./pages/world/world.component').then((c) => c.WorldComponent),
-  // },
-  // {
-  //   title: routeDefinition['craftingList'].title,
-  //   path: routeDefinition['craftingList'].path,
-  //   pathMatch: 'full',
-  //   loadComponent: () =>
-  //     import('./pages/crafting-list/crafting-list.component').then(
-  //       (c) => c.CraftingListComponent
-  //     ),
-  // },
   {
-    title: routeDefinition['userProfile'].title,
-    path: routeDefinition['userProfile'].path,
+    path: routeDefinition['weaponDetails'].path,
     pathMatch: 'full',
     loadComponent: () =>
-      import('./pages/users/user-profile/user-profile.component').then(
-        (c) => c.UserProfileComponent
+      import('./pages/weapons/weapon-details/weapon-details.component').then(
+        (c) => c.WeaponDetailsComponent
       ),
   },
-  {
-    title: routeDefinition['login'].title,
-    path: routeDefinition['login'].path,
-    pathMatch: 'full',
-    loadComponent: () =>
-      import('./auth/login/login.component').then((c) => c.LoginComponent),
-  },
-  {
-    title: routeDefinition['signup'].title,
-    path: routeDefinition['signup'].path,
-    pathMatch: 'full',
-    loadComponent: () =>
-      import('./auth/signup/signup.component').then((c) => c.SignupComponent),
-  },
-  {
-    title: 'Error 404',
-    path: '404',
-    loadComponent: () =>
-      import('./shared/partials/errors/error-404/error-404.component').then(
-        (c) => c.Error404Component
-      ),
-  },
-  {
-    title: 'Error 500',
-    path: '500',
-    loadComponent: () =>
-      import('./shared/partials/errors/error-500/error-500.component').then(
-        (c) => c.Error500Component
-      ),
-  },
+
+  // Not found route definition
   {
     title: 'Not found',
     path: '**',

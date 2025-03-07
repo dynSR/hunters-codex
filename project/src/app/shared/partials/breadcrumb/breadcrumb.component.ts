@@ -15,7 +15,6 @@ interface LinkProps {
   standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './breadcrumb.component.html',
-  styleUrl: './breadcrumb.component.css',
 })
 export class BreadcrumbComponent {
   @Input({ required: true }) isDisplayed!: boolean;
@@ -25,6 +24,8 @@ export class BreadcrumbComponent {
 
   private readonly navigationService = inject(NavigationService);
 
+  constructor() {}
+
   ngOnInit() {
     this.navUrlSubscription = this.navigationService.urlObservable$.subscribe(
       (context) => {
@@ -33,7 +34,7 @@ export class BreadcrumbComponent {
         /**
          * When the context path only contains home as path
          */
-        if (context.path.length === 1) {
+        if (context.paths.length === 1) {
           this.breadcrumbItems = [
             {
               name: routeDefinition[PageName.Home].title,
@@ -43,9 +44,9 @@ export class BreadcrumbComponent {
           return;
         }
 
-        for (let i = 0; i < context.path.length; i++) {
-          const path = context.path[i];
-          const previousPath = context.path[i - 1];
+        for (let i = 0; i < context.paths.length; i++) {
+          const path = context.paths[i];
+          const previousPath = context.paths[i - 1];
           let url = path;
 
           if (

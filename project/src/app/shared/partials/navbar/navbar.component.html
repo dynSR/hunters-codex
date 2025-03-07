@@ -1,21 +1,81 @@
-<nav role="navigation" aria-label="Main nav">
-  <ul class="nav__list">
-    <li class="nav__item">
-      <a [routerLink]="equipmentRoute.path" class="nav__link link">
-        {{ equipmentRoute.title | uppercase }}
-      </a>
-    </li>
-    <li class="nav__separator" aria-hidden="true">{{ "•" }}</li>
-    <li class="nav__item">
-      <a [routerLink]="worldRoute.path" class="nav__link link">
-        {{ worldRoute.title | uppercase }}
-      </a>
-    </li>
-    <li class="nav__separator" aria-hidden="true">{{ "•" }}</li>
-    <li class="nav__item">
-      <a [routerLink]="craftingListRoute.path" class="nav__link link">
+<nav
+  class="navbar is-light has-shadow mb-5"
+  role="navigation"
+  aria-label="main navigation"
+>
+  <div class="navbar-brand">
+    <a class="navbar-item" routerLink="" aria-label="Home page">
+      <img src="assets/logo.svg" alt="App logo" />
+    </a>
+
+    <a
+      role="button"
+      class="navbar-burger"
+      aria-label="menu"
+      aria-expanded="false"
+      data-target="navbar"
+    >
+      <span aria-hidden="true">Test</span>
+      <span aria-hidden="true">Test</span>
+      <span aria-hidden="true">Test</span>
+      <span aria-hidden="true">Test</span>
+    </a>
+  </div>
+
+  <div id="navbar" class="navbar-menu">
+    <div class="navbar-start">
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a
+          class="navbar-item"
+          [routerLink]="equipmentRoute.path"
+          aria-label="Equipment page"
+        >
+          {{ equipmentRoute.title | uppercase }}
+        </a>
+        <div class="navbar-dropdown">
+          <a
+            class="navbar-item"
+            [routerLink]="equipmentRoute.path"
+            aria-label="Equipment page"
+          >
+            {{ equipmentRoute.title }}
+          </a>
+        </div>
+      </div>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a
+          class="navbar-item"
+          [routerLink]="worldRoute.path"
+          aria-label="World page"
+        >
+          {{ worldRoute.title | uppercase }}
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item"> About </a>
+          <hr class="navbar-divider" />
+          <a class="navbar-item"> Report an issue </a>
+        </div>
+      </div>
+
+      <a
+        class="navbar-item"
+        [routerLink]="craftingListRoute.path"
+        aria-label="Crafting list page"
+      >
         {{ craftingListRoute.title | uppercase }}
       </a>
-    </li>
-  </ul>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-primary">
+            <strong>{{ "Sign up" | uppercase }}</strong>
+          </a>
+          <a class="button is-light"> {{ "Log in" | uppercase }} </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </nav>

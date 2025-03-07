@@ -1,0 +1,46 @@
+.weapon-details {
+  justify-content: flex-start;
+  gap: var(--size-xl);
+  background-color: var(--black-faint);
+  height: var(--size-content-height);
+
+  * {
+    border: solid 1px red;
+  }
+}
+
+.weapon-image {
+  width: var(--size-3gs);
+  height: 100%;
+}
+
+.weapon-info {
+  gap: var(--size-xl);
+}
+
+.weapon-info__header {
+  justify-content: space-between;
+  align-items: center;
+  min-height: fit-content;
+}
+
+.header__weapon-name-rarity {
+  align-items: flex-start;
+}
+.weapon-name {
+  line-height: 1;
+  font-size: var(--font-size-title);
+}
+
+.header__weapon-category {
+  justify-content: flex-end;
+  gap: var(--size-medium);
+}
+
+.body__weapon-description {
+  flex: 1;
+}
+
+.weapon-info__footer {
+  height: var(--size-1gs);
+}

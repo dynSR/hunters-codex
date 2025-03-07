@@ -1,49 +1,20 @@
-.card,
-.card--clickable {
-  background-color: var(--black-faint);
-  user-select: none;
-  border: var(--border-main);
-  border-radius: var(--border-radius);
-}
-
-.card--clickable:hover {
+.card.is-clickable:hover {
   cursor: pointer;
   opacity: var(--opacity-hover);
   outline: var(--outline-small);
   outline-offset: var(--outline-offset);
 }
 
-.card__header,
-.card__footer {
-  background-color: var(--black-faint);
-  color: var(--white);
-  height: var(--size-xxl);
-  width: 100%;
-  padding: var(--size-small);
+.card-header {
+  justify-content: center;
+  background-color: var(--bulma-black);
 }
 
-.card__header {
-  background-color: var(--black-opaque);
-  color: var(--white-opaque);
-  gap: var(--size-medium);
+.card-header-title {
+  color: var(--bulma-white);
 }
 
-.card__icon {
-  width: var(--size-icon);
-  height: var(--size-icon);
-}
-
-.card__body {
-  background-color: var(--black-faint);
+.card-content {
   overflow: hidden;
-}
-
-.card__footer {
-  align-items: flex-start;
-  height: var(--size-huge);
-}
-
-.card__cta {
-  text-align: center;
-  width: 100%;
+  padding: 0;
 }

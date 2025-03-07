@@ -6,7 +6,7 @@ import { SharpnessLevel } from './SharpnessLevel';
  */
 export class GreenSharpnessLevel implements SharpnessLevel {
   value: number = 0;
-  color: Uppercase<string> = '70D92C';
+  color: string = '70D92C';
   rawDamageMultiplier: number = 1.05;
   elementalDamageMultiplier: number = 1;
 

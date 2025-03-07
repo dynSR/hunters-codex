@@ -1,36 +1,34 @@
-<div #cardItem [routerLink]="item.routerLink" class="card container flex-v">
+<div #cardItem [routerLink]="item.routerLink" class="card">
   <!-- Card header block -->
-  <div class="card__header container flex-h">
-    @if (item.header.icon) {
+  <header class="card-header is-size-6">
+    <p class="card-header-title">
+      {{ header.headline }}
+    </p>
+    @if (header.icon) {
     <img
-      [src]="item.header.icon"
-      [alt]="item.header.headline"
-      class="card__icon"
+      [src]="header.icon"
+      [alt]="header.headline"
+      loading="lazy"
+      class="card-header-icon is-16x16"
     />
     }
-
-    <h4 aria-label="Card title" class="card__headline">
-      {{ item.header.headline }}
-    </h4>
-  </div>
+  </header>
 
   <!-- Card body block -->
-  <div class="card__body container">
-    <img
-      [src]="item.body.image"
-      [alt]="item.header.headline"
-      class="card__image"
-    />
+  <div class="card-content">
+    <div class="content">
+      <figure class="image is-1by1">
+        <img [src]="body.image" [alt]="header.headline" loading="lazy" />
+      </figure>
+    </div>
   </div>
 
   <!-- Card footer block -->
-  @if (item.footer.isDisplayed) {
-  <div class="card__footer container">
-    @if (item.footer.link) {
-    <a [routerLink]="item.footer.link" class="card__cta link">{{
-      item.footer.link
-    }}</a>
+  @if (footer.isDisplayed) {
+  <footer class="card-footer">
+    @if (footer.link) {
+    <a [routerLink]="footer.link" class="card-footer-item">{{ footer.link }}</a>
     }
-  </div>
+  </footer>
   }
 </div>

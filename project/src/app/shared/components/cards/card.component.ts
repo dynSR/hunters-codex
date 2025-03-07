@@ -7,14 +7,13 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [RouterLink],
   templateUrl: './card.component.html',
-  styleUrl: './card.component.css',
+  styleUrl: './card.component.scss',
 })
 export class CardComponent<T extends CardItem> {
   @Input({ required: true }) item!: T;
   @ViewChild('cardItem') cardItem!: ElementRef<HTMLElement>;
 
-  private readonly baseClass = 'card';
-  private readonly clickableClass = 'card--clickable';
+  private readonly clickableClass = 'is-clickable';
 
   constructor() {}
 
@@ -26,10 +25,7 @@ export class CardComponent<T extends CardItem> {
   private initStyle(): void {
     // Handle clickable state and according style.
     if (this.item.isClickable) {
-      this.cardItem.nativeElement.classList.replace(
-        this.baseClass,
-        this.clickableClass
-      );
+      this.cardItem.nativeElement.classList.add(this.clickableClass);
     }
   }
 
@@ -43,5 +39,17 @@ export class CardComponent<T extends CardItem> {
         this.item.onClick();
       }
     });
+  }
+
+  protected get header() {
+    return this.item.header;
+  }
+
+  protected get body() {
+    return this.item.body;
+  }
+
+  protected get footer() {
+    return this.item.footer;
   }
 }

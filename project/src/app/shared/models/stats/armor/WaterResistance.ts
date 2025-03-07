@@ -10,6 +10,5 @@ export interface WaterResistance extends ElementalResistance {}
 
 export const WATER_RES_METADATA: Required<ItemMetadata> = {
   abbreviation: '',
-  slug: '',
   icon: '',
 };

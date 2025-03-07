@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { routeDefinition, routes } from '../../../app.routes';
+import { routeDefinition } from '../../../app.routes';
 import { CommonModule } from '@angular/common';
 import { RouteInfo } from '../../interfaces/RouteInfo';
+import '../../extensions/string.extension';
 
 @Component({
   selector: 'app-navbar',
@@ -15,4 +16,6 @@ export class NavbarComponent {
   readonly equipmentRoute: RouteInfo = routeDefinition['equipment'];
   readonly worldRoute: RouteInfo = routeDefinition['world'];
   readonly craftingListRoute: RouteInfo = routeDefinition['craftingList'];
+
+  constructor() {}
 }

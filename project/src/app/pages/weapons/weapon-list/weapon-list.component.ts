@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WeaponService } from '../../../shared/services/items/weapon.service';
 import { Weapon, WeaponType } from '../../../shared/models/stats/weapon/Weapon';
-import '../../../shared/extensions/string.extension';
 import { WeaponCardComponent } from '../../../shared/components/cards/weapon-card/weapon-card.component';
 import { WeaponCard } from '../../../shared/interfaces/cards/WeaponCard';
 
@@ -11,6 +10,7 @@ import {
   Sharpness,
   SharpnessBuilder,
 } from '../../../shared/models/stats/weapon/Sharpness';
+import { CaseFlags } from '../../../shared/enums/case-flags';
 
 @Component({
   selector: 'app-weapon-list',
@@ -49,10 +49,10 @@ export class WeaponListComponent {
    */
   fetchWeapons(): void {
     this.weapons = this.weaponService.getWeaponsByCriteria({
-      type: this.route.snapshot.params['category'] as Lowercase<WeaponType>,
+      type: this.route.snapshot.params['category'],
     });
 
-    this.weapons.forEach((w) => console.log(w));
+    // this.weapons.forEach((w) => console.log(w));
 
     this.setCardItems(this.weapons);
   }
@@ -67,7 +67,7 @@ export class WeaponListComponent {
       this.cardItems.push({
         weapon: weapon,
         header: {
-          headline: weapon.name.toLocaleUpperCase() as Uppercase<string>,
+          headline: weapon.name.toCase(CaseFlags.Uppercase),
         },
         body: {
           image: weapon.image,
@@ -76,7 +76,7 @@ export class WeaponListComponent {
           isDisplayed: true,
         },
         isClickable: true,
-        routerLink: weapon.name.toKebabCase(true) as Lowercase<string>,
+        routerLink: weapon.slug,
       })
     );
   }

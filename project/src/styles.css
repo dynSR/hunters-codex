@@ -1,3 +1,5 @@
+@import "bulma/css/bulma.css";
+
 @font-face {
   font-family: "Atkinson";
   src: url("/assets/fonts/Atkinson_Hyperlegible_Next/AtkinsonHyperlegibleNext-VariableFont_wght.ttf")
@@ -17,31 +19,37 @@
 }
 
 :root {
-  font-family: var(--font-main);
+  --bulma-body-family: var(--font-main);
+  /* font-family: var(--font-main); */
 
   /* Color palette */
   /* ------ Whites */
-  --white-opaque: rgba(248, 248, 248, 1);
+  --bulma-white: rgba(248, 248, 248, 1);
 
   /* ------ Blacks */
-  --black-opaque: rgba(25, 25, 25, 1);
-  --black-high: rgba(25, 25, 25, 0.8);
-  --black-medium: rgba(25, 25, 25, 0.5);
-  --black-low: rgba(25, 25, 25, 0.35);
-  --black-faint: rgba(25, 25, 25, 0.15);
+  --bulma-black-h: 0;
+  --bulma-black-s: 0%;
+  --bulma-black-l: 15%;
 
   /* ------ Primary */
-  --primary-opaque: rgba(255, 127, 17, 1);
+  --bulma-primary-h: 28;
+  --bulma-primary-s: 100%;
+  --bulma-primary-l: 53%;
 
   /* ------ Success */
-  --success-opaque: rgba(92, 171, 125, 1);
+  --bulma-success-h: 145;
+  --bulma-success-s: 32%;
+  --bulma-success-l: 52%;
 
   /* ------ Danger */
-  --danger-opaque: rgba(237, 37, 78, 1);
+  --bulma-danger-h: 348;
+  --bulma-danger-s: 85%;
+  --bulma-danger-l: 54%;
 
-  /* ------ Greys */
-  --grey-opaque: rgba(93, 115, 126, 1);
-  --grey-medium: rgba(93, 115, 126, 0.5);
+  /* ------ Link */
+  --bulma-link-h: 207;
+  --bulma-link-s: 88%;
+  --bulma-link-l: 27%;
 
   /* Size palette */
   /* ------ ^2 */
@@ -102,14 +110,11 @@
   /* Border related */
   --border-radius: var(--size-small);
   --border-width: var(--size-xs);
-  --border-main: solid var(--border-width) var(--black-opaque);
-
-  /* Weight palette */
-  --weight-light: 300;
+  --border-main: solid var(--border-width) var(--bulma-black);
 
   /* Outline related */
-  --outline-tiny: solid var(--size-tiny) var(--black-opaque);
-  --outline-small: solid var(--size-small) var(--black-opaque);
+  --outline-tiny: solid var(--size-tiny) var(--bulma-black);
+  --outline-small: solid var(--size-small) var(--bulma-black);
   --outline-offset: var(--size-xs);
 
   /* Opacity palette */
@@ -126,53 +131,7 @@
   min-height: 1px;
 }
 
-html {
-  height: 100%;
-}
-
-body {
-  color: var(--black-opaque);
-  margin: var(--size-fixed-xl);
-}
-
-main {
-  font-size: var(--font-size-main);
-  margin-top: var(--size-fixed-xl);
-}
-
 .icon {
   width: var(--size-large);
   height: var(--size-large);
-}
-
-.container {
-  width: 100%;
-  height: 100%;
-}
-
-.flex,
-.flex-h,
-.flex-v {
-  display: flex;
-  align-items: center;
-}
-
-.flex-h {
-  width: 100%;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.flex-v {
-  height: 100%;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-.w-100 {
-  width: 100%;
-}
-
-.h-100 {
-  height: 100%;
 }

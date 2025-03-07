@@ -9,6 +9,14 @@ import '../../../extensions/string.extension';
   standalone: true,
   imports: [RouterLink],
   templateUrl: './weapon-card.component.html',
-  styleUrls: ['../card.component.css', './weapon-card.component.css'],
+  styleUrls: ['../card.component.scss', './weapon-card.component.css'],
 })
-export class WeaponCardComponent extends CardComponent<WeaponCard> {}
+export class WeaponCardComponent extends CardComponent<WeaponCard> {
+  constructor() {
+    super();
+  }
+
+  get weapon() {
+    return this.item.weapon;
+  }
+}

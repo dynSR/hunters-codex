@@ -8,6 +8,5 @@ export interface Elderseal extends Stat {}
 
 export const ELDERSEAL_METADATA: Required<ItemMetadata> = {
   abbreviation: '',
-  slug: '',
   icon: '',
 };

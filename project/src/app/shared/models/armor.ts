@@ -1,7 +1,6 @@
 import { ItemMetadata } from '../interfaces/items/Identifiable';
 import { Item } from '../interfaces/items/Item';
 import { ItemCategory } from '../interfaces/items/ItemCategory';
-import '../extensions/string.extension';
 import { ArmorStats } from './stats/armor/ArmorStats';
 import { DEFENSE_METADATA } from './stats/Defense';
 import { THUNDER_RES_METADATA } from './stats/armor/ThunderResistance';
@@ -10,6 +9,7 @@ import { WATER_RES_METADATA } from './stats/armor/WaterResistance';
 import { FIRE_RES_METADATA } from './stats/armor/FireResistance';
 import { DRAGON_RES_METADATA } from './stats/armor/DragonResistance';
 import { Decoration } from './Decoration';
+import { Precondition } from '../utils/precondition';
 
 /** @equals /assets/icons/armors/ */
 export const ARMORS_ICON_FOLDER_PATH: string = '/assets/icons/armors/';
@@ -36,25 +36,27 @@ export interface Armor extends Item {
  * It avoids information redundancy throughout the project and thus make their management easier.
  * @see Identifiable for more information.
  */
-export const ARMOR_METADATA: { [key: string]: ItemMetadata } = Object.values(
-  ArmorType
-).reduce((acc, armorType) => {
-  acc[armorType] = {
-    slug: armorType as Lowercase<string>,
-    icon: `${ARMORS_ICON_FOLDER_PATH}${armorType}/${armorType}-24.svg` as Lowercase<string>,
-  };
-  return acc;
-}, {} as { [key: string]: ItemMetadata });
+export const ARMOR_METADATA: { [key: string]: ItemMetadata } =
+  Object.fromEntries(
+    Object.values(ArmorType).map((armorType) => [
+      armorType,
+      {
+        icon: `${ARMORS_ICON_FOLDER_PATH}${armorType}/${armorType}-24.svg`,
+      },
+    ])
+  );
 
 export class ArmorBuilder {
   private readonly armor: Required<Armor> = {
     id: 0,
     name: '',
+    slug: '',
     type: '',
+    description: '',
     category: {
       name: '',
+      slug: '',
       metadata: {
-        slug: '',
         icon: '',
       },
     },
@@ -62,31 +64,37 @@ export class ArmorBuilder {
       defense: {
         value: 0,
         name: '',
+        slug: '',
         metadata: DEFENSE_METADATA,
       },
       fireResistance: {
         value: 0,
         name: '',
+        slug: '',
         metadata: FIRE_RES_METADATA,
       },
       waterResistance: {
         value: 0,
         name: '',
+        slug: '',
         metadata: WATER_RES_METADATA,
       },
       thunderResistance: {
         value: 0,
         name: '',
+        slug: '',
         metadata: THUNDER_RES_METADATA,
       },
       iceResistance: {
         value: 0,
         name: '',
+        slug: '',
         metadata: ICE_RES_METADATA,
       },
       dragonResistance: {
         value: 0,
         name: '',
+        slug: '',
         metadata: DRAGON_RES_METADATA,
       },
     },
@@ -94,7 +102,6 @@ export class ArmorBuilder {
     image: '',
     metadata: {
       abbreviation: '',
-      slug: '',
       icon: '',
     },
   };
@@ -113,7 +120,7 @@ export class ArmorBuilder {
     return this;
   }
 
-  withName(name: Capitalize<string>): ArmorBuilder {
+  withName(name: string): ArmorBuilder {
     if (name.isEmpty()) {
       console.error(`The armor name cannot be empty or null.`);
     }
@@ -122,7 +129,16 @@ export class ArmorBuilder {
     return this;
   }
 
-  withType(type: Lowercase<string> | number): ArmorBuilder {
+  withSlug(slug: string): ArmorBuilder {
+    if (slug.isEmpty()) {
+      console.error(`The armor slug cannot be empty or null.`);
+    }
+
+    this.armor.slug = slug;
+    return this;
+  }
+
+  withType(type: string | number): ArmorBuilder {
     if (Number(type) < 0 || type.toLocaleString().isEmpty()) {
       console.error(
         `The armor type provided must be greater than 0, not empty or not null.`
@@ -133,29 +149,30 @@ export class ArmorBuilder {
     return this;
   }
 
-  withCategory(category: ArmorCategory): ArmorBuilder {
-    if (category === null || category === undefined) {
-      console.error(
-        `The provided category must not be null or undefined.`,
-        category
-      );
-    }
+  withDescription(description: string): ArmorBuilder {
+    this.armor.description = description;
+    return this;
+  }
 
+  withCategory(category: ArmorCategory): ArmorBuilder {
+    Precondition.notNull(category);
     this.armor.category = category;
     return this;
   }
 
   withStats(stats: ArmorStats): ArmorBuilder {
+    Precondition.notNull(stats);
     this.armor.stats = stats;
     return this;
   }
 
   withDecorations(decorations: Array<Decoration>): ArmorBuilder {
+    Precondition.notNull(decorations);
     this.armor.decorations = decorations;
     return this;
   }
 
-  withImage(image: Lowercase<string>): ArmorBuilder {
+  withImage(image: string): ArmorBuilder {
     if (image.isEmpty()) {
       console.error(`The armor image reference cannot be empty or null.`);
     }
@@ -165,6 +182,7 @@ export class ArmorBuilder {
   }
 
   withMetadata(metadata: ItemMetadata): ArmorBuilder {
+    Precondition.notNull(metadata);
     this.armor.metadata = metadata;
     return this;
   }

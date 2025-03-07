@@ -1,23 +1,23 @@
-<div #cardItem [routerLink]="item.routerLink" class="card container flex-v">
+<div #cardItem [routerLink]="item.routerLink" class="card">
   <!-- Card header block -->
-  <div class="card__header container flex-h">
-    <h4 aria-label="Card title" class="card__headline">
-      {{ item.header.headline }}
+  <header class="card-header is-size-6">
+    <h4 aria-label="Card title" class="card-header-title is-centered">
+      {{ header.headline }}
     </h4>
-  </div>
+  </header>
 
   <!-- Card body block -->
-  <div class="card__body container">
-    <img
-      [src]="item.body.image"
-      [alt]="item.header.headline"
-      class="card__image"
-    />
+  <div class="card-content">
+    <div class="content">
+      <figure class="image is-2by1">
+        <img [src]="body.image" [alt]="header.headline" loading="lazy" />
+      </figure>
+    </div>
   </div>
 
   <!-- Card footer block -->
-  @if (item.footer.isDisplayed) {
-  <div class="card__footer container flex-v">
+  @if ( footer.isDisplayed) {
+  <footer class="card-footer is-flex-direction-column">
     <!-- 
         Weapon info block, regroups : 
         - Category
@@ -25,26 +25,36 @@
         - Defense
         - Decorations
     -->
-    <div class="weapon-info container flex-v">
-      <!-- Weapon category and rarity block -->
-      <div class="weapon-category-rarity flex-h">
-        <p class="weapon-category w-100">
-          {{ item.weapon.category.metadata.abbreviation }}
+    <div class="weapon-info is-flex-direction-column">
+      <div class="is-flex is-justify-content-space-between">
+        <!-- Weapon category -->
+        <p class="is-size-5">
+          {{ weapon.category.metadata.abbreviation }}
         </p>
-        <p class="weapon-rarity w-100">{{ "Rarity 12" }}</p>
+
+        <!-- Weapon rarity -->
+        <p class="is-size-7">{{ "Rarity 12" }}</p>
       </div>
 
-      <!-- Weapon defense and decorations block -->
-      <div class="weapon-defense-deco flex-h">
-        <div class="weapon-defense flex-h">
-          <img
-            src="/assets/icons/weapons/great-sword/great-sword-48.svg"
-            alt=""
-            class="icon"
-          />
-          <p>{{ "999" }}</p>
-        </div>
-        <div class="weapon-decorations flex-h"></div>
+      <!-- Weapon decorations -->
+      <div
+        class="weapon-decorations is-flex is-align-items-center is-justify-content-end"
+      >
+        <img
+          src="/assets/icons/weapons/great-sword/great-sword-48.svg"
+          alt=""
+          class="image is-16x16"
+        />
+        <img
+          src="/assets/icons/weapons/great-sword/great-sword-48.svg"
+          alt=""
+          class="image is-16x16"
+        />
+        <img
+          src="/assets/icons/weapons/great-sword/great-sword-48.svg"
+          alt=""
+          class="image is-16x16"
+        />
       </div>
     </div>
 
@@ -56,63 +66,63 @@
         - Elderseal (can be equal to 0)
         - Affinity
     -->
-    <div class="weapon-stats container flex-v">
-      <!-- Weapon sharpness -->
-      <div class="weapon-sharpness flex-h h-100">
+    <div class="weapon-stats">
+      <!-- Weapon sharpness value -->
+      <div class="is-flex is-align-items-center">
         <img
           src="/assets/icons/weapons/great-sword/great-sword-48.svg"
           alt=""
-          class="icon"
+          class="image is-16x16"
         />
-        <progress max="100" value="70"></progress>
+        <progress class="progress is-small" max="100" value="70"></progress>
       </div>
 
       <!-- Weapon damages block -->
-      <div class="weapon-damages container flex-h">
+      <div class="weapon-damages is-flex is-justify-content-space-between">
         <!-- Weapon damages - RAW value -->
-        <div class="weapon-damages__raw flex-h">
+        <div class="is-flex is-align-items-center">
           <img
             src="/assets/icons/weapons/great-sword/great-sword-48.svg"
             alt=""
-            class="icon"
+            class="image is-16x16"
           />
-          <p class="w-100">{{ "999" }}</p>
+          <p class="w-100">{{ weapon.stats.rawDamage.value }}</p>
         </div>
 
         <!-- Weapon damages - ELEMENTAL value -->
-        <div class="weapon-damages__elemental container flex-h">
+        <div class="is-flex is-align-items-center">
           <img
             src="/assets/icons/weapons/great-sword/great-sword-48.svg"
             alt=""
-            class="icon"
+            class="image is-16x16"
           />
-          <p>{{ "999" }}</p>
+          <p>{{ weapon.stats.elementalDamage.value }}</p>
         </div>
       </div>
 
       <!-- Weapon elderseal and affinity block -->
-      <div class="weapon-elder-affinity container flex-h">
+      <div class="is-flex is-justify-content-space-between">
         <!-- Weapon elderseal value  -->
-        <div class="weapon-elder flex-h">
+        <div class="weapon-elder is-flex is-align-items-center">
           <img
             src="/assets/icons/weapons/great-sword/great-sword-48.svg"
             alt=""
-            class="icon"
+            class="image is-16x16"
           />
-          <p class="w-100">{{ "999" }}</p>
+          <p class="w-100">{{ weapon.stats.elderseal.value }}</p>
         </div>
 
         <!-- Weapon affinity value  -->
-        <div class="weapon-affinity flex-h">
+        <div class="weapon-affinity is-flex is-align-items-center">
           <img
             src="/assets/icons/weapons/great-sword/great-sword-48.svg"
             alt=""
-            class="icon"
+            class="image is-16x16"
           />
-          <p>{{ "99" }}</p>
+          <p>{{ weapon.stats.affinity.value }}</p>
         </div>
       </div>
     </div>
-  </div>
+  </footer>
   }
 </div>

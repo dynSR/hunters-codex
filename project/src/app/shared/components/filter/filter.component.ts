@@ -8,12 +8,12 @@ import {
 import { Selectable } from '../../interfaces/Selectable';
 
 export interface Filter {
-  value: Lowercase<string> | number;
-  icon?: Lowercase<string>;
+  value: string | number;
+  icon?: string;
 }
 
 export const DEFAULT_FILTER: Filter = {
-  value: 'ALL' as Lowercase<string>,
+  value: 'ALL',
 };
 
 @Component({
@@ -49,6 +49,7 @@ export class FilterComponent implements Selectable<FilterComponent> {
       nativeElement.classList.replace(this.defaultClass, this.selectedClass)
     ) {
       this.isSelected = true;
+      console.log('Selected', this.filter.value);
     }
   }
 
@@ -58,6 +59,7 @@ export class FilterComponent implements Selectable<FilterComponent> {
       nativeElement.classList.replace(this.selectedClass, this.defaultClass)
     ) {
       this.isSelected = false;
+      console.log('Deselected', this.filter.value);
     }
   }
 

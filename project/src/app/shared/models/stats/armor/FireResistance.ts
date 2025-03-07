@@ -10,6 +10,5 @@ export interface FireResistance extends ElementalResistance {}
 
 export const FIRE_RES_METADATA: Required<ItemMetadata> = {
   abbreviation: '',
-  slug: '',
   icon: '',
 };

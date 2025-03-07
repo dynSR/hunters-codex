@@ -1,19 +1,21 @@
+import { Precondition } from '../../utils/precondition';
 import { Identifiable, ItemMetadata } from './Identifiable';
 
 export interface Item extends Identifiable {
-  type: Lowercase<string> | number;
-  image: Lowercase<string>;
+  type: string | number;
+  image: string;
 }
 
 export class ItemBuilder {
   private readonly item: Required<Item> = {
     id: 0,
     name: '',
+    slug: '',
     type: '',
+    description: '',
     image: '',
     metadata: {
       abbreviation: '',
-      slug: '',
       icon: '',
     },
   };
@@ -30,22 +32,52 @@ export class ItemBuilder {
     return this;
   }
 
-  withName(name: Capitalize<string>): ItemBuilder {
+  withName(name: string): ItemBuilder {
+    if (name.isEmpty()) {
+      console.error(`The item name cannot be empty or null.`);
+    }
+
     this.item.name = name;
     return this;
   }
 
-  withType(type: Lowercase<string> | number): ItemBuilder {
+  withSlug(slug: string): ItemBuilder {
+    if (slug.isEmpty()) {
+      console.error(`The item slug cannot be empty or null.`);
+    }
+
+    this.item.slug = slug;
+    return this;
+  }
+
+  withType(type: string | number): ItemBuilder {
+    if (Number(type) < 0 || type.toLocaleString().isEmpty()) {
+      console.error(
+        `The item type provided must be greater than 0, not empty or not null.`
+      );
+    }
+
     this.item.type = type;
     return this;
   }
 
-  withImage(image: Lowercase<string>): ItemBuilder {
+  withDescription(description: string): ItemBuilder {
+    this.item.description = description;
+    return this;
+  }
+
+  withImage(image: string): ItemBuilder {
+    if (image.isEmpty()) {
+      console.error(`The item image reference cannot be empty or null.`);
+    }
+
     this.item.image = image;
     return this;
   }
 
   withMetadata(metadata: ItemMetadata): ItemBuilder {
+    Precondition.notNull(metadata);
+
     this.item.metadata = metadata;
     return this;
   }

@@ -10,6 +10,5 @@ export interface DragonResistance extends ElementalResistance {}
 
 export const DRAGON_RES_METADATA: Required<ItemMetadata> = {
   abbreviation: '',
-  slug: '',
   icon: '',
 };

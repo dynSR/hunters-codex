@@ -1,44 +1,21 @@
-.equipment,
+.equipment-content,
 .filters {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--size-xl);
   height: var(--size-content-height);
   width: 100%;
 }
 
 .filters {
+  align-items: center;
   flex-direction: row;
   gap: var(--size-large);
-  height: var(--size-xxl);
+  height: var(--size-xl);
 }
 
-/* Rule to set created app-filter component to be centered properly */
-.filters > * {
-  height: 100%;
-  display: inline-flex;
-  align-items: center;
-}
-
-.categories {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: var(--size-large);
-  width: 100%;
-  height: 100%;
-}
-
-.categories > .categories-row {
-  display: flex;
-  justify-content: center;
-  gap: var(--size-large);
-  width: 100%;
-  height: 100%;
-}
-.categories > .categories-row > * {
-  width: 100%;
+.categories.grid {
   height: 100%;
 }

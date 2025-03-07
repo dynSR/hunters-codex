@@ -8,6 +8,5 @@ export interface Affinity extends Stat {}
 
 export const AFFINITY_METADATA: Required<ItemMetadata> = {
   abbreviation: '',
-  slug: '',
   icon: '',
 };

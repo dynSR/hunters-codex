@@ -1,6 +1,5 @@
 import { Component, inject, QueryList, ViewChildren } from '@angular/core';
 import {
-  EquipmentCategory,
   EquipmentType,
   ItemService,
 } from '../../shared/services/items/item.service';
@@ -8,18 +7,19 @@ import {
   Filter,
   FilterComponent,
 } from '../../shared/components/filter/filter.component';
-import { CardComponent } from '../../shared/components/cards/card.component';
-import { CardItem } from '../../shared/interfaces/cards/CardItem';
 import { Subscription } from 'rxjs';
 import {
   SelectionGroup,
   SelectionGroupBuilder,
-} from '../../shared/components/selection-group/selection-group.component';
+} from '../../shared/components/selection-group/selection-group';
+import '../../shared/extensions/string.extension';
+import { ItemCategoriesComponent } from '../../shared/components/item-categories/item-categories.component';
+import { CaseFlags } from '../../shared/enums/case-flags';
 
 @Component({
   selector: 'app-equipment',
   standalone: true,
-  imports: [CardComponent, FilterComponent],
+  imports: [FilterComponent, ItemCategoriesComponent],
   templateUrl: './equipment.component.html',
   styleUrl: './equipment.component.css',
 })
@@ -27,29 +27,19 @@ export class EquipmentComponent {
   @ViewChildren(FilterComponent) filterComponents!: QueryList<FilterComponent>;
   filters = new Array<Filter>();
 
-  private selectedFilter: Filter = {
-    value: EquipmentType.Weapons as Lowercase<string>,
+  selectedFilter: Filter = {
+    value: EquipmentType.Weapons,
   };
   private selectionSubscription = new Subscription();
   selectionGroup: SelectionGroup<FilterComponent> | null = null;
 
-  cardItems = new Array<CardItem>();
-
-  private readonly maxItemPerRow = 7;
-  firstRow = new Array<CardItem>();
-  secondRow = new Array<CardItem>();
-
+  readonly EquipmentType = EquipmentType;
   private readonly itemService = inject(ItemService);
 
   constructor() {}
 
   ngOnInit() {
     this.initEquipmentFilters();
-    this.setCardItems(
-      this.itemService.getItemCategoriesBasedOnType(
-        this.selectedFilter.value as EquipmentType
-      )
-    );
   }
 
   ngAfterViewInit() {
@@ -67,11 +57,6 @@ export class EquipmentComponent {
       .withCurrentSelection(this.filterComponents.first)
       .withSelectionAction((selection) => {
         this.selectedFilter = selection.filter;
-        this.setCardItems(
-          this.itemService.getItemCategoriesBasedOnType(
-            this.selectedFilter.value as EquipmentType
-          )
-        );
       })
       .build();
   }
@@ -82,42 +67,15 @@ export class EquipmentComponent {
       const category = equipmentCategories[i];
 
       this.filters.push({
-        value: category.name.toLocaleLowerCase() as Lowercase<string>,
+        value: category.name.toCase(CaseFlags.Lowercase),
         icon: category.metadata.icon,
       });
     }
   }
 
-  private setCardItems(categories: Array<EquipmentCategory>): void {
-    this.cardItems = [];
-
-    categories.forEach((category) =>
-      this.cardItems.push({
-        header: {
-          headline:
-            (category.metadata.abbreviation as Uppercase<string>) ??
-            category.name.toLocaleUpperCase(),
-          icon: category.metadata.icon ?? 'not-found',
-        },
-        body: {
-          image: '',
-        },
-        footer: {
-          isDisplayed: false,
-        },
-        isClickable: true,
-        routerLink: category.metadata.slug,
-      })
+  get equipmentCategories() {
+    return this.itemService.getItemCategoriesBasedOnType(
+      this.selectedFilter.value as EquipmentType
     );
-
-    /* 
-      For display purposes, we halve the card items by the maxItemPerRow.
-    */
-    this.firstRow = this.cardItems.slice(0, this.maxItemPerRow);
-    if (this.cardItems.length > this.maxItemPerRow) {
-      this.secondRow = this.cardItems.slice(this.maxItemPerRow);
-    } else {
-      this.secondRow = [];
-    }
   }
 }

@@ -1,13 +1,13 @@
 interface CardHeader {
-  headline: Uppercase<string> | Capitalize<string>;
-  icon?: Lowercase<string>;
+  headline: string | string;
+  icon?: string;
 }
 interface CardBody {
-  image: Lowercase<string>;
+  image: string;
 }
 interface CardFooter {
   isDisplayed: boolean;
-  link?: Lowercase<string>;
+  link?: string;
   description?: string;
 }
 
@@ -17,6 +17,6 @@ export interface CardItem {
   footer: CardFooter;
 
   isClickable: boolean;
-  routerLink?: Lowercase<string>;
+  routerLink?: string;
   onClick?: () => void;
 }
