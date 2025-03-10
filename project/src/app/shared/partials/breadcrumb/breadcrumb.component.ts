@@ -15,6 +15,7 @@ interface LinkProps {
   standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './breadcrumb.component.html',
+  styleUrl: './breadcrumb.component.css',
 })
 export class BreadcrumbComponent {
   @Input({ required: true }) isDisplayed!: boolean;

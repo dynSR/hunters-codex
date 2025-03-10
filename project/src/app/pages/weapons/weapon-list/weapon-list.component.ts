@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { WeaponService } from '../../../shared/services/items/weapon.service';
-import { Weapon, WeaponType } from '../../../shared/models/stats/weapon/Weapon';
+import { WeaponService } from '../../../shared/services/weapon/weapon.service';
+import { Weapon, WeaponType } from '../../../shared/models/Weapon';
 import { WeaponCardComponent } from '../../../shared/components/cards/weapon-card/weapon-card.component';
 import { WeaponCard } from '../../../shared/interfaces/cards/WeaponCard';
 
@@ -49,7 +49,7 @@ export class WeaponListComponent {
    */
   fetchWeapons(): void {
     this.weapons = this.weaponService.getWeaponsByCriteria({
-      type: this.route.snapshot.params['category'],
+      baseType: this.route.snapshot.params['category'],
     });
 
     // this.weapons.forEach((w) => console.log(w));

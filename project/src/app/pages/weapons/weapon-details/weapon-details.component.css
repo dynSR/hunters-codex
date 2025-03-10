@@ -1,12 +1,7 @@
 .weapon-details {
   justify-content: flex-start;
-  gap: var(--size-xl);
   background-color: var(--black-faint);
   height: var(--size-content-height);
-
-  * {
-    border: solid 1px red;
-  }
 }
 
 .weapon-image {
@@ -15,7 +10,7 @@
 }
 
 .weapon-info {
-  gap: var(--size-xl);
+  flex-direction: column;
 }
 
 .weapon-info__header {
@@ -26,15 +21,6 @@
 
 .header__weapon-name-rarity {
   align-items: flex-start;
-}
-.weapon-name {
-  line-height: 1;
-  font-size: var(--font-size-title);
-}
-
-.header__weapon-category {
-  justify-content: flex-end;
-  gap: var(--size-medium);
 }
 
 .body__weapon-description {

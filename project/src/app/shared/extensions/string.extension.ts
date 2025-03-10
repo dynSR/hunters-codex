@@ -5,8 +5,8 @@ declare global {
     isEmpty(): boolean;
     equals(s: string): boolean;
     toCapitalized(): string;
-    toAndAssociation(): string;
     toCase(caseFlag: CaseFlags): string;
+    toAbbreviation(): string;
   }
 }
 
@@ -24,15 +24,10 @@ String.prototype.toCapitalized = function (this: string): string {
   ).toLocaleLowerCase()}`;
 };
 
-String.prototype.toAndAssociation = function (this: string): string {
-  return this.split('').reduce((_, curr) => {
-    return `${curr.toLocaleUpperCase()}n${curr.toLocaleUpperCase()}`;
-  }, '');
-};
-
 String.prototype.toCase = function (this: string, caseFlag: CaseFlags): string {
-  let result = this;
+  const base = this.replace(/([a-z](?=[A-Z]))/g, '$1 '); // in case the word is in camelCase
   const regex = /[\s\-_]+/; // Use to split on either space, hyphen or underscore.
+  let result = base;
 
   switch (caseFlag) {
     case CaseFlags.Titlecase:
@@ -40,10 +35,10 @@ String.prototype.toCase = function (this: string, caseFlag: CaseFlags): string {
       result =
         parts.length >= 1
           ? parts.map((word) => word.toCapitalized()).join(' ')
-          : this.toCapitalized();
-      break;
+          : base.toCapitalized();
+      return result;
     case CaseFlags.Titlecase | CaseFlags.Uppercase:
-      return this.split(regex).reduce((acc, curr) => {
+      return base.split(regex).reduce((acc, curr) => {
         return `${acc.toLocaleUpperCase()} ${curr.toLocaleUpperCase()}`;
       });
     case CaseFlags.Pascalcase:
@@ -56,15 +51,27 @@ String.prototype.toCase = function (this: string, caseFlag: CaseFlags): string {
       break;
     case CaseFlags.Snakecase | CaseFlags.Lowercase:
       break;
+    case CaseFlags.Kebabcase:
+      return base.split(regex).join('-');
     case CaseFlags.Kebabcase | CaseFlags.Uppercase:
-      break;
+      return base.split(regex).join('-').toLocaleUpperCase();
     case CaseFlags.Kebabcase | CaseFlags.Lowercase:
-      break;
+      return base.split(regex).join('-').toLocaleLowerCase();
     case CaseFlags.Lowercase:
-      return result.toLocaleLowerCase();
+      return this.toLocaleLowerCase();
     case CaseFlags.Uppercase:
-      return result.toLocaleUpperCase();
+      return this.toLocaleUpperCase();
   }
 
-  return result;
+  return base;
+};
+
+String.prototype.toAbbreviation = function (this: string): string {
+  const result = this.replace('and', 'n')
+    .split('-')
+    .map((s) => s.charAt(0));
+
+  return result.length <= 1
+    ? this.toCase(CaseFlags.Uppercase)
+    : result.join('').toCase(CaseFlags.Uppercase);
 };

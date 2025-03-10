@@ -1,4 +1,3 @@
-import { ItemMetadata } from '../../../interfaces/items/Identifiable';
 import { ElementalResistance } from './ElementalResistance';
 
 /**
@@ -7,8 +6,3 @@ import { ElementalResistance } from './ElementalResistance';
  * Weapons and Monsters with high water resistance will be less susceptible to Water Element attacks and damage, as well as Waterblight.
  */
 export interface WaterResistance extends ElementalResistance {}
-
-export const WATER_RES_METADATA: Required<ItemMetadata> = {
-  abbreviation: '',
-  icon: '',
-};

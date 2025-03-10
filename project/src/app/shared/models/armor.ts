@@ -1,20 +1,15 @@
-import { ItemMetadata } from '../interfaces/items/Identifiable';
-import { Item } from '../interfaces/items/Item';
-import { ItemCategory } from '../interfaces/items/ItemCategory';
+import { BaseItem, BaseItemType } from '../interfaces/BaseItem';
+import { BaseItemCategory } from '../interfaces/BaseItemCategory';
 import { ArmorStats } from './stats/armor/ArmorStats';
-import { DEFENSE_METADATA } from './stats/Defense';
-import { THUNDER_RES_METADATA } from './stats/armor/ThunderResistance';
-import { ICE_RES_METADATA } from './stats/armor/IceResistance';
-import { WATER_RES_METADATA } from './stats/armor/WaterResistance';
-import { FIRE_RES_METADATA } from './stats/armor/FireResistance';
-import { DRAGON_RES_METADATA } from './stats/armor/DragonResistance';
 import { Decoration } from './Decoration';
 import { Precondition } from '../utils/precondition';
+import { StatBuilder, StatType } from './stats/Stat';
 
 /** @equals /assets/icons/armors/ */
 export const ARMORS_ICON_FOLDER_PATH: string = '/assets/icons/armors/';
 
 export enum ArmorType {
+  None = 'none',
   Helms = 'helms',
   Chests = 'chests',
   Arms = 'arms',
@@ -22,8 +17,9 @@ export enum ArmorType {
   Legs = 'legs',
   Charms = 'charms',
 }
-export interface ArmorCategory extends ItemCategory {}
-export interface Armor extends Item {
+export interface ArmorCategory extends BaseItemCategory {}
+export interface Armor extends Omit<BaseItem, 'icon'> {
+  type: ArmorType;
   category: ArmorCategory;
   stats: ArmorStats;
   decorations: Array<Decoration>;
@@ -36,74 +32,47 @@ export interface Armor extends Item {
  * It avoids information redundancy throughout the project and thus make their management easier.
  * @see Identifiable for more information.
  */
-export const ARMOR_METADATA: { [key: string]: ItemMetadata } =
-  Object.fromEntries(
-    Object.values(ArmorType).map((armorType) => [
-      armorType,
-      {
-        icon: `${ARMORS_ICON_FOLDER_PATH}${armorType}/${armorType}-24.svg`,
-      },
-    ])
-  );
+// export const ARMOR_METADATA: { [key: string]: ItemMetadata } =
+//   Object.fromEntries(
+//     Object.values(ArmorType).map((armorType) => [
+//       armorType,
+//       {
+//         icon: `${ARMORS_ICON_FOLDER_PATH}${armorType}/${armorType}-24.svg`,
+//       },
+//     ])
+//   );
 
 export class ArmorBuilder {
   private readonly armor: Required<Armor> = {
     id: 0,
     name: '',
     slug: '',
-    type: '',
+    baseType: BaseItemType.Armors,
+    type: ArmorType.None,
     description: '',
     category: {
       name: '',
       slug: '',
-      metadata: {
-        icon: '',
-      },
+      icon: '',
     },
     stats: {
-      defense: {
-        value: 0,
-        name: '',
-        slug: '',
-        metadata: DEFENSE_METADATA,
-      },
-      fireResistance: {
-        value: 0,
-        name: '',
-        slug: '',
-        metadata: FIRE_RES_METADATA,
-      },
-      waterResistance: {
-        value: 0,
-        name: '',
-        slug: '',
-        metadata: WATER_RES_METADATA,
-      },
-      thunderResistance: {
-        value: 0,
-        name: '',
-        slug: '',
-        metadata: THUNDER_RES_METADATA,
-      },
-      iceResistance: {
-        value: 0,
-        name: '',
-        slug: '',
-        metadata: ICE_RES_METADATA,
-      },
-      dragonResistance: {
-        value: 0,
-        name: '',
-        slug: '',
-        metadata: DRAGON_RES_METADATA,
-      },
+      defense: new StatBuilder().withType(StatType.Defense).build(),
+      fireResistance: new StatBuilder()
+        .withType(StatType.FireResistance)
+        .build(),
+      waterResistance: new StatBuilder()
+        .withType(StatType.WaterResistance)
+        .build(),
+      thunderResistance: new StatBuilder()
+        .withType(StatType.ThunderResistance)
+        .build(),
+      iceResistance: new StatBuilder().withType(StatType.IceResistance).build(),
+      dragonResistance: new StatBuilder()
+        .withType(StatType.DragonResistance)
+        .build(),
     },
     decorations: [],
     image: '',
-    metadata: {
-      abbreviation: '',
-      icon: '',
-    },
   };
 
   constructor() {}
@@ -122,7 +91,7 @@ export class ArmorBuilder {
 
   withName(name: string): ArmorBuilder {
     if (name.isEmpty()) {
-      console.error(`The armor name cannot be empty or null.`);
+      console.error(`The name cannot be empty or null.`);
     }
 
     this.armor.name = name;
@@ -131,18 +100,16 @@ export class ArmorBuilder {
 
   withSlug(slug: string): ArmorBuilder {
     if (slug.isEmpty()) {
-      console.error(`The armor slug cannot be empty or null.`);
+      console.error(`The slug cannot be empty or null.`);
     }
 
     this.armor.slug = slug;
     return this;
   }
 
-  withType(type: string | number): ArmorBuilder {
-    if (Number(type) < 0 || type.toLocaleString().isEmpty()) {
-      console.error(
-        `The armor type provided must be greater than 0, not empty or not null.`
-      );
+  withType(type: ArmorType): ArmorBuilder {
+    if (type === null || Number(type) < 0 || type.isEmpty()) {
+      console.error('The type cannot be null, lesser than 0 nor empty.');
     }
 
     this.armor.type = type;
@@ -174,16 +141,10 @@ export class ArmorBuilder {
 
   withImage(image: string): ArmorBuilder {
     if (image.isEmpty()) {
-      console.error(`The armor image reference cannot be empty or null.`);
+      console.error(`The image reference cannot be empty or null.`);
     }
 
     this.armor.image = image;
-    return this;
-  }
-
-  withMetadata(metadata: ItemMetadata): ArmorBuilder {
-    Precondition.notNull(metadata);
-    this.armor.metadata = metadata;
     return this;
   }
 

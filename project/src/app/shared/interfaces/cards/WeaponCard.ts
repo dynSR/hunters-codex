@@ -1,4 +1,4 @@
-import { Weapon } from '../../models/stats/weapon/Weapon';
+import { Weapon } from '../../models/Weapon';
 import { CardItem } from './CardItem';
 
 export interface WeaponCard extends CardItem {

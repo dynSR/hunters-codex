@@ -1,4 +1,3 @@
-import { ItemMetadata } from '../../../interfaces/items/Identifiable';
 import { ElementalResistance } from './ElementalResistance';
 
 /**
@@ -7,8 +6,3 @@ import { ElementalResistance } from './ElementalResistance';
  * Weapons and Monsters with high thunder resistance will be less susceptible to Thunder Element attacks and damage, as well as Thunderblight.
  */
 export interface ThunderResistance extends ElementalResistance {}
-
-export const THUNDER_RES_METADATA: Required<ItemMetadata> = {
-  abbreviation: '',
-  icon: '',
-};

@@ -1,11 +1,9 @@
 import { Component, Input } from '@angular/core';
-import {
-  EquipmentCategory,
-  EquipmentType,
-} from '../../services/items/item.service';
 import { CardComponent } from '../cards/card.component';
 import { CardItem } from '../../interfaces/cards/CardItem';
 import '../../extensions/string.extension';
+import { BaseItemCategory } from '../../interfaces/BaseItemCategory';
+import { BaseItemType } from '../../interfaces/BaseItem';
 
 @Component({
   selector: 'app-item-categories',
@@ -22,8 +20,8 @@ import '../../extensions/string.extension';
   `,
 })
 export class ItemCategoriesComponent {
-  @Input({ required: true }) categories!: Array<EquipmentCategory>;
-  @Input({ required: false }) filter: string = EquipmentType.Weapons;
+  @Input({ required: true }) categories!: Array<BaseItemCategory>;
+  @Input({ required: false }) filter: string = BaseItemType.Weapons;
   cardItems = new Array<CardItem>();
 
   protected className = 'container is-fluid fixed-grid has-7-cols p-0';
@@ -32,14 +30,16 @@ export class ItemCategoriesComponent {
     this.setCardItems(this.categories);
   }
 
-  private setCardItems(categories: Array<EquipmentCategory>): void {
+  private setCardItems(categories: Array<BaseItemCategory>): void {
     this.cardItems = [];
+
+    console.log(categories);
 
     categories.forEach((category) =>
       this.cardItems.push({
         header: {
-          headline: category.metadata.abbreviation ?? category.name,
-          icon: category.metadata.icon ?? 'not-found',
+          headline: category.name.toAbbreviation(),
+          icon: category.icon ?? 'not-found',
         },
         body: {
           image: 'https://bulma.io/assets/images/placeholders/600x480.png',
@@ -52,7 +52,7 @@ export class ItemCategoriesComponent {
       })
     );
 
-    if (this.filter.equals(EquipmentType.Armors)) {
+    if (this.filter.equals(BaseItemType.Armors)) {
       this.className = `container is-fluid fixed-grid has-${6}-cols p-0`;
     }
   }

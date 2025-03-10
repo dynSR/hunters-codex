@@ -1,4 +1,4 @@
-import { Identifiable } from '../interfaces/items/Identifiable';
+import { Identifiable } from '../interfaces/Identifiable';
 
 export enum SlotLevel {
   One = 1,

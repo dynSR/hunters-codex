@@ -1,9 +1,5 @@
 import { Component, inject, QueryList, ViewChildren } from '@angular/core';
 import {
-  EquipmentType,
-  ItemService,
-} from '../../shared/services/items/item.service';
-import {
   Filter,
   FilterComponent,
 } from '../../shared/components/filter/filter.component';
@@ -14,7 +10,8 @@ import {
 } from '../../shared/components/selection-group/selection-group';
 import '../../shared/extensions/string.extension';
 import { ItemCategoriesComponent } from '../../shared/components/item-categories/item-categories.component';
-import { CaseFlags } from '../../shared/enums/case-flags';
+import { ItemCategoryService } from '../../shared/services/item-category/item-category.service';
+import { BaseItemType } from '../../shared/interfaces/BaseItem';
 
 @Component({
   selector: 'app-equipment',
@@ -24,17 +21,19 @@ import { CaseFlags } from '../../shared/enums/case-flags';
   styleUrl: './equipment.component.css',
 })
 export class EquipmentComponent {
-  @ViewChildren(FilterComponent) filterComponents!: QueryList<FilterComponent>;
-  filters = new Array<Filter>();
+  @ViewChildren(FilterComponent) filterComponents!: QueryList<
+    FilterComponent<BaseItemType>
+  >;
+  filters = new Array<Filter<BaseItemType>>();
 
-  selectedFilter: Filter = {
-    value: EquipmentType.Weapons,
+  selectedFilter: Filter<BaseItemType> = {
+    value: BaseItemType.Weapons,
   };
   private selectionSubscription = new Subscription();
-  selectionGroup: SelectionGroup<FilterComponent> | null = null;
+  selectionGroup: SelectionGroup<FilterComponent<BaseItemType>> | null = null;
 
-  readonly EquipmentType = EquipmentType;
-  private readonly itemService = inject(ItemService);
+  readonly EquipmentType = BaseItemType;
+  private readonly itemCategoryService = inject(ItemCategoryService);
 
   constructor() {}
 
@@ -52,7 +51,9 @@ export class EquipmentComponent {
   }
 
   private initSelectionGroup(): void {
-    this.selectionGroup = new SelectionGroupBuilder<FilterComponent>()
+    this.selectionGroup = new SelectionGroupBuilder<
+      FilterComponent<BaseItemType>
+    >()
       .withSelectionGroup(this.filterComponents.toArray())
       .withCurrentSelection(this.filterComponents.first)
       .withSelectionAction((selection) => {
@@ -62,20 +63,28 @@ export class EquipmentComponent {
   }
 
   private initEquipmentFilters(): void {
-    const equipmentCategories = this.itemService.getEquipmentCategories();
+    const equipmentCategories =
+      this.itemCategoryService.baseItemCategories.filter(
+        (c) =>
+          !c.name.equals(BaseItemType.None) &&
+          !c.name.equals(BaseItemType.Items)
+      );
+
     for (let i = 0; i < equipmentCategories.length; i++) {
       const category = equipmentCategories[i];
 
       this.filters.push({
-        value: category.name.toCase(CaseFlags.Lowercase),
-        icon: category.metadata.icon,
+        value: category.name as BaseItemType,
+        icon: category.icon,
       });
     }
   }
 
-  get equipmentCategories() {
-    return this.itemService.getItemCategoriesBasedOnType(
-      this.selectedFilter.value as EquipmentType
-    );
+  get weaponCategories() {
+    return this.itemCategoryService.weaponCategories;
+  }
+
+  get armorCategories() {
+    return this.itemCategoryService.armorCategories;
   }
 }

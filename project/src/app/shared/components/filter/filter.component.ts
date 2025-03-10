@@ -7,12 +7,12 @@ import {
 } from '@angular/core';
 import { Selectable } from '../../interfaces/Selectable';
 
-export interface Filter {
-  value: string | number;
+export interface Filter<T> {
+  value: T;
   icon?: string;
 }
 
-export const DEFAULT_FILTER: Filter = {
+export const DEFAULT_FILTER: Filter<string | number> = {
   value: 'ALL',
 };
 
@@ -23,12 +23,12 @@ export const DEFAULT_FILTER: Filter = {
   templateUrl: './filter.component.html',
   styleUrl: './filter.component.css',
 })
-export class FilterComponent implements Selectable<FilterComponent> {
-  @Input({ required: true }) filter!: Filter;
+export class FilterComponent<T> implements Selectable<FilterComponent<T>> {
+  @Input({ required: true }) filter!: Filter<T>;
   @ViewChild('filterElement') htmlElement!: ElementRef<HTMLButtonElement>;
 
   isSelected = false;
-  onClick = new EventEmitter<FilterComponent>();
+  onClick = new EventEmitter<FilterComponent<T>>();
 
   defaultClass = 'filter';
   selectedClass = 'filter--selected';
@@ -49,7 +49,7 @@ export class FilterComponent implements Selectable<FilterComponent> {
       nativeElement.classList.replace(this.defaultClass, this.selectedClass)
     ) {
       this.isSelected = true;
-      console.log('Selected', this.filter.value);
+      // console.log('Selected', this.filter.value);
     }
   }
 
@@ -59,7 +59,7 @@ export class FilterComponent implements Selectable<FilterComponent> {
       nativeElement.classList.replace(this.selectedClass, this.defaultClass)
     ) {
       this.isSelected = false;
-      console.log('Deselected', this.filter.value);
+      // console.log('Deselected', this.filter.value);
     }
   }
 

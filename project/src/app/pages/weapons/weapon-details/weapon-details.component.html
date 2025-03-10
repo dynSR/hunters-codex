@@ -1,44 +1,46 @@
-<div class="weapon-details flex-h">
+<div class="weapon-details is-flex gap-xl">
   <!-- Left side : weapon image -->
-  <img src="" alt="" class="weapon-image" />
+  <img src="" alt="" class="weapon-image image" />
 
   <!-- Right side : weapon information -->
-  <div class="weapon-info container flex-v">
-    <!-- Weapon info HEADER -->
-    <div class="weapon-info__header flex-h">
+  <div class="weapon-info is-flex gap-xl">
+    <header class="weapon-info__header is-flex is-align-items-flex-start">
       <!-- Weapon info : weapon name and rarity block -->
-      <div class="header__weapon-name-rarity container flex-v">
+      <div class="is-flex-direction-column">
         <!-- Weapon info : weapon name -->
-        <h1 class="weapon-name">
+        <h1 class="title is-uppercase mb-0">
           {{ weaponName }}
         </h1>
         <!-- Weapon info : weapon rarity -->
         <small class="weapon-rarity">{{ "— RARITY 9" }}</small>
       </div>
       <!-- Weapon info : weapon category -->
-      <div class="header__weapon-category flex-h h-100">
-        <img src="" alt="" class="icon" />
-        <a [routerLink]="" class="link">
-          {{ weaponCategory }}
+      <div class="is-flex is-fullheight gap-medium">
+        <img src="" alt="" class="image is-16x16" />
+        <a routerLink="/equipment/{{ getWeaponCategory(true) }}">
+          {{ getWeaponCategory() }}
         </a>
       </div>
-    </div>
-    <!-- Weapon info BODY -->
-    <div class="weapon-info__body container flex-v">
+    </header>
+    <body class="weapon-info__body is-flex-direction-column">
       <!-- Weapon description -->
       <div class="body__weapon-description">
-        <h4 class="w-100">{{ "Description" | uppercase }}</h4>
+        <h4 class="subtitle is-uppercase mb-1">{{ "Description" }}</h4>
         <p class="weapon-description">{{ weapon.description }}</p>
       </div>
       <!-- Block containing stats, set, decorations and skill(s) -->
-      <div class="container flex-h">
+      <div class="is-flex-direction-column">
         <!-- Weapon stats -->
-        <div class="body__weapon-stats flex-v"></div>
+        <div class="body__weapon-stats is-flex-direction-column">
+          @for (key of weaponStats; track $index) {
+          <app-stat-display [stat]="key" />
+          }
+        </div>
 
         <!-- Block containing weapon associated set, decorations and skill(s) -->
-        <div class="container flex-v"></div>
+        <div class="container is-flex-direction-column"></div>
       </div>
-    </div>
-    <div class="weapon-info__footer container"></div>
+    </body>
+    <footer class="weapon-info__footer"></footer>
   </div>
 </div>

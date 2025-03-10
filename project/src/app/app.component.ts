@@ -10,7 +10,7 @@ import { NavbarComponent } from './shared/partials/navbar/navbar.component';
   template: `
     <app-navbar />
 
-    <main>
+    <main class="container is-fluid is-paddingless">
       <app-breadcrumb [isDisplayed]="true" />
       <router-outlet />
     </main>

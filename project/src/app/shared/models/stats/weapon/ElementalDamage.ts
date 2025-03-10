@@ -1,4 +1,3 @@
-import { ItemMetadata } from '../../../interfaces/items/Identifiable';
 import { Stat } from '../Stat';
 
 /**
@@ -13,8 +12,3 @@ export interface ElementalDamage extends Stat {
    */
   isHidden: boolean;
 }
-
-export const ELEMENTAL_DAMAGE_METADATA: Required<ItemMetadata> = {
-  abbreviation: '',
-  icon: '',
-};
